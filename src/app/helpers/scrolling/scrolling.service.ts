@@ -25,26 +25,29 @@ export class CdkScrolling {
   constructor() {}
 
   public scroll(config: ScrollingConfig): any {
-    const configOrDefaults = new ScrollingConfig(config);
+    return new Promise<void>((resolve: () => void) => {
+      const configOrDefaults = new ScrollingConfig(config);
 
-    const start: number = window.pageYOffset;
-    const startTime: number = this._currenttime();
+      const start: number = window.pageYOffset;
+      const startTime: number = this._currenttime();
 
-    const offset: number = configOrDefaults.anchor.offsetTop;
-    const scrollAmount: number = this._getscrollamount(offset);
+      const offset: number = configOrDefaults.anchor.offsetTop;
+      const scrollAmount: number = this._getscrollamount(offset);
 
-    if ('requestAnimationFrame' in window === false) {
-      window.scroll(0, scrollAmount);
-      return;
-    }
+      if ('requestAnimationFrame' in window === false) {
+        window.scroll(0, scrollAmount);
+        return;
+      }
 
-    this.doScroll(
-      start,
-      startTime,
-      configOrDefaults.speed,
-      configOrDefaults.easing,
-      scrollAmount
-    );
+      this.doScroll(
+        start,
+        startTime,
+        configOrDefaults.speed,
+        configOrDefaults.easing,
+        scrollAmount,
+        resolve
+      );
+    });
   }
 
   private doScroll(
@@ -52,7 +55,8 @@ export class CdkScrolling {
     startTime: number,
     duration: number,
     easing: Easing,
-    scrollAmount: number
+    scrollAmount: number,
+    resolve: () => void
   ): any {
     const now = this._currenttime();
     const time = EasingFunctions[easing](
@@ -62,11 +66,12 @@ export class CdkScrolling {
     window.scroll(0, Math.ceil(time * (scrollAmount - start) + start));
 
     if (window.pageYOffset === scrollAmount || now - startTime > duration) {
+      resolve();
       return;
     }
 
     requestAnimationFrame(() =>
-      this.doScroll(start, startTime, duration, easing, scrollAmount)
+      this.doScroll(start, startTime, duration, easing, scrollAmount, resolve)
     );
   }
 
