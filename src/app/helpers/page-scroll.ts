@@ -4,8 +4,12 @@ import { environment } from 'src/environments/environment';
 import { Observable, fromEvent } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 import { UrlService } from '../services/url.service';
+import { ElementRef, ViewChildren, QueryList } from '@angular/core';
+import { CdkScrolling } from './scrolling/scrolling.service';
 
 export class Fullpage {
+  @ViewChildren('section') public sections: QueryList<ElementRef<HTMLElement>>;
+
   public urlstate: PageDef;
   public isanimating: boolean = false;
 
@@ -14,7 +18,9 @@ export class Fullpage {
   constructor(
     protected pages: PageDef[],
     protected title: Title,
-    protected location: UrlService
+    protected location: UrlService,
+    protected host: ElementRef,
+    protected scrolling: CdkScrolling
   ) {
     this.onMouseWheel.pipe(debounceTime(50)).subscribe((event: WheelEvent) => {
       const { deltaY, deltaX } = event;
@@ -23,18 +29,17 @@ export class Fullpage {
       const CURRENT_INDEX = this.pages.indexOf(this.urlstate);
 
       if (!this.isanimating) {
+        let newIndex: number = CURRENT_INDEX;
         switch (DIRECTION) {
           case 'UP':
-            if (CURRENT_INDEX < this.pages.length - 1) {
-              this.setUrlState(this.pages[CURRENT_INDEX + 1].path);
-            } else this.setUrlState(this.pages[0].path);
+            if (CURRENT_INDEX > 0) newIndex--;
             break;
           default:
-            if (CURRENT_INDEX > 0) {
-              this.setUrlState(this.pages[CURRENT_INDEX - 1].path);
-            } else this.setUrlState(this.pages[this.pages.length - 1].path);
+            if (CURRENT_INDEX < this.pages.length - 1) newIndex++;
             break;
         }
+
+        this.setUrlState(this.pages[newIndex].path);
       }
     });
   }
@@ -46,6 +51,16 @@ export class Fullpage {
       this.title.setTitle(`${environment.basePageTitle} - ${nextState.name}`);
 
       this.urlstate = nextState;
+
+      const section = this.sections
+        .map(i => i.nativeElement)
+        .find(sect => sect.id === this.urlstate.name);
+
+      this.scrolling.scroll({
+        anchor: section,
+        speed: 450,
+        easing: 'easeInOutQuart',
+      });
 
       this.location.set(nextState.path);
       return;
