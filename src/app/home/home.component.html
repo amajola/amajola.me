@@ -1,0 +1,129 @@
+<div fullpage id="fullpage" [options]="config" (ref)="getRef($event)">
+
+    <div class="section">
+      <div class="pageRender">
+  
+        <div class="scroll-dots">
+          <span class="dot-active"></span>
+          <span class="dot"></span>
+          <span class="dot"></span>
+          <span class="dot"></span>
+          <span class="dot"></span>
+        </div>
+        
+        <div class="jumboTron" >
+          <app-jumbotron [routerLink]="['/marked/:about']" routerLinkActive="router-link-active" 
+                         [ViewImg]="'../assets/about/amajola.jpg'" 
+                         [Header]="'About'">
+          </app-jumbotron>
+        </div>
+  
+      </div>
+  
+    </div>
+  
+    <div class="section">
+    
+      <div class="pageRender">
+  
+        <div class="scroll-dots">
+          <span class="dot"></span>
+          <span class="dot-active"></span>
+          <span class="dot"></span>
+          <span class="dot"></span>
+          <span class="dot"></span>
+        </div>
+  
+        <div class="jumboTron">
+          <app-jumbotron  [routerLink]="['/marked/:work']" routerLinkActive="router-link-active" 
+                          [ViewImg]="'../assets/work/amajola.jpg'" 
+                          [Header]="'Work'">
+          </app-jumbotron>
+        </div>
+  
+      </div>
+  
+    </div>
+  
+  
+    <div class="section">
+    
+      <div class="pageRender">
+  
+        <div class="scroll-dots">
+          <span class="dot"></span>
+          <span class="dot"></span>
+          <span class="dot-active"></span>
+          <span class="dot"></span>
+          <span class="dot"></span>
+        </div>
+  
+        <div class="jumboTron">
+          <app-jumbotron  [routerLink]="['/marked/:skills']" routerLinkActive="router-link-active" 
+                          [ViewImg]="'../assets/skills/amajola.jpg'" 
+                          [Header]="'Skill'">
+          </app-jumbotron>
+        </div>
+      </div>
+  
+    </div>
+  
+    <div class="section">
+    
+        <div class="pageRender">
+          
+          <div class="scroll-dots">
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot-active"></span>
+            <span class="dot"></span>
+          </div>
+    
+          <div class="jumboTron">
+            <app-jumbotron [ViewImg]="'../assets/blog/amajola.jpg'" [Header]="'Blog'">
+    
+            </app-jumbotron>
+          </div>
+        </div>
+    
+    </div>
+  
+    <div class="section">
+    
+        <div class="pageRender">
+          
+          <div class="scroll-dots">
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot-active"></span>
+          </div>
+    
+          <div class="jumboTron">
+            <app-jumbotron [ViewImg]="'../assets/contact_me/amajola.jpg'" [Header]="'Contact'">
+              
+                  <div>
+                      <img  class="icon" src="../../assets/contact_me/Twitter.png">
+                  </div>
+        
+                  <div>
+                      <img class="icon" src="../../assets/contact_me/Github.jpg">
+                  </div>
+
+                  <div>
+                        <img class="icon" src="../../assets/contact_me/LinkedIn.svg">
+                  </div>
+              
+    
+            </app-jumbotron>            
+          </div>
+
+          </div>
+    
+    </div>
+  
+  <div>
+  
+  
