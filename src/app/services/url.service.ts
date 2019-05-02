@@ -13,5 +13,9 @@ export class UrlService {
     return window.location.pathname;
   }
 
-  public set(url: string): void {}
+  public set(url: string): void {
+    const current = this.path;
+    window.history.replaceState(null, null, url);
+    this.changes.next({ prev: current, next: `/${url}` });
+  }
 }
