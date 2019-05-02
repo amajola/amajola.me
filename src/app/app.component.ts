@@ -1,13 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
+import { Location } from '@angular/common';
+import { UrlService } from './services/url.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
 })
+export class AppComponent implements OnInit {
+  constructor(protected location: UrlService) {}
 
-export class AppComponent {
-  title = 'amajola-me';
-
+  public ngOnInit(): void {
+    console.log(this.location.path);
+  }
 }
