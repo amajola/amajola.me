@@ -4,8 +4,25 @@ import { environment } from 'src/environments/environment';
 import { Observable, fromEvent } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 import { UrlService } from '../services/url.service';
-import { ElementRef, ViewChildren, QueryList } from '@angular/core';
+import {
+  ElementRef,
+  ViewChildren,
+  QueryList,
+  HostListener,
+} from '@angular/core';
 import { CdkScrolling } from './scrolling/scrolling.service';
+import { ScrollingConfig } from '../models/scrolling';
+
+const SCROLL_OPTIONS: (
+  anchor: HTMLElement,
+  animate: boolean
+) => ScrollingConfig = (anchor: HTMLElement, animate: boolean) => {
+  return {
+    anchor,
+    speed: animate ? 450 : 0,
+    easing: 'easeInOutQuart',
+  };
+};
 
 export class Fullpage {
   @ViewChildren('section') public sections: QueryList<ElementRef<HTMLElement>>;
@@ -13,41 +30,44 @@ export class Fullpage {
   public urlstate: PageDef;
   public isanimating: boolean = false;
 
-  public onMouseWheel: Observable<any> = fromEvent(window, 'mousewheel');
-
   constructor(
     protected pages: PageDef[],
     protected title: Title,
     protected location: UrlService,
     protected host: ElementRef,
     protected scrolling: CdkScrolling
-  ) {
-    this.onMouseWheel.subscribe((event: WheelEvent) => {
-      const { deltaY, deltaX } = event;
+  ) {}
 
-      const DIRECTION = this._getDeltaDirection(deltaY);
-      const CURRENT_INDEX = this.pages.indexOf(this.urlstate);
+  @HostListener('window:mousewheel', ['$event']) public onmousewheel(
+    event: WheelEvent
+  ): void {
+    const { deltaY } = event;
 
-      if (!this.isanimating) {
-        this.isanimating = true;
+    const DIRECTION = this._getDeltaDirection(deltaY);
+    const CURRENT_INDEX = this.pages.indexOf(this.urlstate);
 
-        let newIndex: number = CURRENT_INDEX;
-        switch (DIRECTION) {
-          case 'UP':
-            if (CURRENT_INDEX > 0) newIndex--;
-            break;
-          default:
-            if (CURRENT_INDEX < this.pages.length - 1) newIndex++;
-            break;
-        }
+    if (!this.isanimating) {
+      this.isanimating = true;
 
-        this.setUrlState(this.pages[newIndex].path);
+      let newIndex: number = CURRENT_INDEX;
+      switch (DIRECTION) {
+        case 'UP':
+          if (CURRENT_INDEX > 0) newIndex--;
+          break;
+        default:
+          if (CURRENT_INDEX < this.pages.length - 1) newIndex++;
+          break;
       }
-    });
+
+      this.setUrlState(this.pages[newIndex].path);
+    }
   }
 
   // TODO: Refactor this spagetti
-  public setUrlState(url: string, animate: boolean = true): void {
+  public async setUrlState(
+    url: string,
+    animate: boolean = true
+  ): Promise<void> {
     const nextState = this.pages.find(page => page.path === url);
 
     if (!!nextState) {
@@ -59,14 +79,8 @@ export class Fullpage {
         .map(i => i.nativeElement)
         .find(sect => sect.id === this.urlstate.name);
 
-      this.scrolling
-        .scroll({
-          anchor: section,
-          speed: animate ? 450 : 0,
-          easing: 'easeInOutQuart',
-        })
-        .then(() => (this.isanimating = false));
-
+      await this.scrolling.scroll(SCROLL_OPTIONS(section, animate));
+      this.isanimating = false;
       this.location.set(nextState.path);
       return;
     }

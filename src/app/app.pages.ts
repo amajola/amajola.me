@@ -7,6 +7,14 @@ export const pages: PageDef[] = [
   },
   {
     name: 'About',
-    path: '/about',
+    path: '/about-me',
+  },
+  {
+    name: 'Contact',
+    path: '/contact-me',
+  },
+  {
+    name: 'Work',
+    path: '/my-work',
   },
 ];
