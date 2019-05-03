@@ -21,24 +21,24 @@ import { CdkScrolling } from './scrolling.service';
 export class ScrollingDirective implements OnInit, OnDestroy, OnChanges {
   private currentEvent: Subscription;
 
-  private _anchor: ScrollingAnchor = 'self';
+  private anchorElement: ScrollingAnchor = 'self';
 
   @Input()
   public get anchor(): ScrollingAnchor {
-    return this._anchor === 'self' ? this.element : this._anchor;
+    return this.anchorElement === 'self' ? this.element : this.anchorElement;
   }
   public set anchor(v: ScrollingAnchor) {
-    this._anchor = v;
+    this.anchorElement = v;
   }
 
-  private _on: ScrollingActivationTarget = 'click';
+  private scrollOn: ScrollingActivationTarget = 'click';
 
   @Input()
   public get on(): ScrollingActivationTarget {
-    return (this._on === 'hover' ? 'mouseover' : 'click') as any;
+    return (this.scrollOn === 'hover' ? 'mouseover' : 'click') as any;
   }
   public set on(v: ScrollingActivationTarget) {
-    this._on = v;
+    this.scrollOn = v;
   }
 
   @Input() public speed: number = 700;
