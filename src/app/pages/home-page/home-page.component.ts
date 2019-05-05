@@ -1,24 +1,17 @@
-import { Component, OnInit, Inject, ElementRef, ViewChild, Renderer2 } from '@angular/core';
+import { Component, OnInit, Inject, ElementRef, ViewChild, Renderer2, RendererFactory2 } from '@angular/core';
 import {ShowdownService} from '../../services/showdown.service'
+import {MarkdownConsumer} from '../../helpers/showdown'
+import {HttpClient} from "@angular/common/http";
 
 @Component({
   selector: 'app-home-page',
   templateUrl: './home-page.component.html',
   styleUrls: ['./home-page.component.scss'],
 })
-export class HomePageComponent implements OnInit {
-  
-  constructor(public ShowdownService: ShowdownService, private renderer: Renderer2, private el: ElementRef) {
-      this.ShowdownService.Location = "../../../assets/about/Lopem.md";
-      this.ShowdownService.ConvertedHtml().then((result: string) => {
-        const Markdown = this.renderer.createElement('div');
-        const value = Markdown.innerHTML = result;
-        // This is not good find a better way
-        this.renderer.appendChild(this.el.nativeElement, Markdown);
-        this.renderer.setAttribute(Markdown, "MDirective", '');
-      }).catch(err => {
-          console.log(err)
-      })
+export class HomePageComponent extends MarkdownConsumer implements OnInit {
+
+  constructor(private Showdown: ShowdownService) {
+    super("../../../assets/about/Lopem.md", Showdown)
   }
 
   ngOnInit() {}

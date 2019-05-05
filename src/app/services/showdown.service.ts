@@ -1,7 +1,7 @@
-import { Component, OnInit, Inject, ElementRef, Injectable } from '@angular/core';
-import * as showdown from 'showdown';
+import { Injectable, Renderer2, RendererFactory2 } from '@angular/core';
 import {MarkdownOptions} from '../models/showdown-opt';
 import {HttpClient} from "@angular/common/http";
+import * as Showdown from 'showdown';
 
 const DefaultOptions: MarkdownOptions =  {
     tables: true,
@@ -18,43 +18,34 @@ const DefaultOptions: MarkdownOptions =  {
 }
 
 @Injectable({
-  providedIn: 'root',
+    providedIn: "root",
 })
 export class ShowdownService {
- 
-    public Converter;
-    public HTML: object;
-    private Path: string;
 
-    constructor(private Http: HttpClient) {
-      this.Converter = new showdown.Converter(DefaultOptions);
+    private Converter;
+    private Render: Renderer2;
+
+    constructor(private Http: HttpClient, private RenderFactory: RendererFactory2) {
+        this.Render = this.RenderFactory.createRenderer(null, null)
+        this.Converter = new Showdown.Converter();
     }
 
-    ConvertMarkdown(path: string) {  
+    getFile(Path: string) {
         return new Promise(resolve => {
-          this.Http.get(path, {responseType: 'text'}).toPromise().then(result => {
-              result = this.Converter.makeHtml(result)
-               resolve (result);
-          }).catch(err => console.log(err));
+            this.Http.get(Path, {responseType: 'text'}).toPromise().then(result => {
+                const htmlValue = this.Render.createElement('div');
+                result = this.Converter.makeHtml(result);
+                htmlValue.innerHTML = result;
+                resolve (htmlValue);
+            }).catch(err => console.log(err));
         });
-    };
-
-
+    }
 
     AddOption(optionKey: string, value: any): boolean {
         if (this.Converter.getOption(optionKey)) {
             this.Converter.setOption(optionKey, value);
             return true;
         } else return false;
-    }
-
-    set Location(reletivePath: string) {
-        this.Path = reletivePath
-    }
-
-    async ConvertedHtml() {
-        const doc = await this.ConvertMarkdown(this.Path);
-        return doc
     }
 
     get ShowGlobalOptions(): object {
