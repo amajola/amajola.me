@@ -15,14 +15,14 @@ export class AboutComponent extends MarkdownConsumer
 
   public displayMarkdown: boolean = false;
 
-  constructor(private Showdown: ShowdownService, Render2: Renderer2) {
-    super(Showdown, Render2);
+  constructor(showdown: ShowdownService) {
+    super('assets/about/Lopem.md', showdown);
   }
 
   ngOnInit() {}
 
   ngAfterViewInit(): void {
-    this.domInput('../../../assets/about/Lopem.md');
+    console.log('Hello World');
   }
 
   srcollDown() {}
