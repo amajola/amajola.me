@@ -2,17 +2,11 @@
   display: block;
   height: 100%;
   width: 100%;
-  background-color: orange;
   overflow: auto;
 }
 
-// .theme {
-//   font-size: 2em;
-//   background-color: white;
-//   h1 {
-//     color: aqua
-//   }
-// }
+.markdown {
+  font-size: 1.5em;
+}
 
 // So I'm having problems Styling the .theme class which is made by home-page.conponent.ts
-// The Markdown is parsered my showdown.js and is added to the DOM using Renderer2 Please Tell me how to improve this

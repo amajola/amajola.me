@@ -9,6 +9,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CdkScrollingModule } from './helpers/scrolling/scrolling.module';
 import { HomePageComponent } from './pages/home-page/home-page.component';
+import { AboutComponent } from './pages/about/about.component';
+import { ContactComponent } from './pages/contact/contact.component';
+import { MyWorkComponent } from './pages/my-work/my-work.component';
+import { SkillsComponent } from './pages/skills/skills.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +20,10 @@ import { HomePageComponent } from './pages/home-page/home-page.component';
     PageTextComponent,
     JumbotronComponent,
     HomePageComponent,
+    AboutComponent,
+    ContactComponent,
+    MyWorkComponent,
+    SkillsComponent,
   ],
   imports: [
     BrowserModule,

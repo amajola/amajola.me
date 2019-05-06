@@ -1,4 +1,4 @@
-import { ElementRef, ViewChild } from '@angular/core';
+import { ElementRef, ViewChild, Renderer2 } from '@angular/core';
 import { ShowdownService } from '../services/showdown.service';
 
 
@@ -8,9 +8,16 @@ export class MarkdownConsumer {
     public contentoutlet: ElementRef<HTMLElement>;
     
 
-    constructor(fileToRender: string, protected markdownRenderer: ShowdownService) {
-        markdownRenderer.getFile(fileToRender).then((result: object) => {
-            // Please Help Me Here I have the Markdown Rendered
+    constructor(protected markdownRenderer: ShowdownService, private Render2: Renderer2) {}
+
+    domInput(fileToRender: string,) {
+        this.markdownRenderer.getFile(fileToRender).then((result: string) => {
+            const parser = new DOMParser();
+            const value = parser.parseFromString(result, 'text/html').body;
+            console.log(this.contentoutlet)
+            value.childNodes.forEach(element => {
+                this.Render2.appendChild(this.contentoutlet.nativeElement, element);
+            });
         });
     }
 

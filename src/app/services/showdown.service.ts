@@ -23,20 +23,16 @@ const DefaultOptions: MarkdownOptions =  {
 export class ShowdownService {
 
     private Converter;
-    private Render: Renderer2;
 
-    constructor(private Http: HttpClient, private RenderFactory: RendererFactory2) {
-        this.Render = this.RenderFactory.createRenderer(null, null)
-        this.Converter = new Showdown.Converter();
+    constructor(private Http: HttpClient) {
+        this.Converter = new Showdown.Converter()
     }
 
     getFile(Path: string) {
         return new Promise(resolve => {
             this.Http.get(Path, {responseType: 'text'}).toPromise().then(result => {
-                const htmlValue = this.Render.createElement('div');
                 result = this.Converter.makeHtml(result);
-                htmlValue.innerHTML = result;
-                resolve (htmlValue);
+                resolve (result);
             }).catch(err => console.log(err));
         });
     }

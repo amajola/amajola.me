@@ -12,15 +12,19 @@
       height: 100vh;
 
       &.home {
-        background-color: aqua;
+        background-color: gray;
+      }
+
+      &.Skills {
+        background-color: white;
       }
 
       &.about {
-        background-color: purple;
+        background-color: white;
       }
 
       &.contact {
-        background-color: olive;
+        background-color: white;
       }
     }
   }
