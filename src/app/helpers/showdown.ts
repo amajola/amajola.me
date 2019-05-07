@@ -45,6 +45,8 @@ export class MarkdownConsumer {
 
     this.contentoutlet.nativeElement.innerHTML = file;
 
+    this.contentoutlet.nativeElement.classList.add('markdown-wrapper');
+
     this.fetchingMarkdown = false;
   }
 }

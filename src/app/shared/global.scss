@@ -1,5 +1,3 @@
-$primary-color: #222121;
-$secondary-color: #2d2d2d;
-$thrid-color: #696969;
-$fourth-color: #b9b9b9;
-$base: #ffffff;
+@import './resets/resets';
+@import './variables/colors';
+@import './utils/markdown';
