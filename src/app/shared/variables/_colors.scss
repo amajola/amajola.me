@@ -1,0 +1,10 @@
+// Making use of css variables instead of
+// sass variables as they provied far
+// better features.
+:root {
+  --primary-color: #222121;
+  --secondary-color: #2d2d2d;
+  --thrid-color: #696969;
+  --fourth-color: #b9b9b9;
+  --base: #ffffff;
+}

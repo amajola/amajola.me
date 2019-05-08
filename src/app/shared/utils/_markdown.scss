@@ -1,0 +1,10 @@
+// CSS styles inside this selector will only
+// apply to markdown that has been rendered by
+// the showdown helper class
+.markdown-wrapper {
+  h1 {
+    color: var(--primary-color);
+    font-size: 50px;
+    font-weight: 300;
+  }
+}

@@ -14,3 +14,7 @@ Cecropidae in?
 2. Levis e Haec adde
 3. Et habent hostibus gemma
 4. Irin nec conatur licet
+
+```typescript
+const varname = 'some string';
+```

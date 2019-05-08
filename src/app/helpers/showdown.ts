@@ -7,6 +7,9 @@ export class MarkdownConsumer {
   @ViewChild('contentOutlet')
   public contentoutlet: ElementRef<HTMLElement>;
 
+  // This state tracker can be used to have
+  // a loading state when the markdown is
+  // being fetched
   public fetchingMarkdown: boolean = true;
 
   constructor(
@@ -44,6 +47,11 @@ export class MarkdownConsumer {
     )) as string;
 
     this.contentoutlet.nativeElement.innerHTML = file;
+
+    // All compiled markdown will be rendered into
+    // of '.markdown-wrapper' so that styles can be
+    // scoped to only markdown
+    this.contentoutlet.nativeElement.classList.add('markdown-wrapper');
 
     this.fetchingMarkdown = false;
   }
