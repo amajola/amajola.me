@@ -1,9 +1,16 @@
-<div class="container">
-  <div #contentOutlet></div>
-  <!-- 
+<div class="container" #Jumbotron>
   <app-jumbotron
     [ViewImg]="displayImage"
     [Header]="jumboTronHeader"
     class="Jumb"
-  ></app-jumbotron> -->
+    (click)="openModal()"
+  ></app-jumbotron>
+</div>
+
+<div class="Markdown" #Modal>
+  <div class="modal">
+    <div #contentOutlet></div>
+
+    <button (click)="closeModal()" >Close</button>
+  </div>
 </div>

@@ -1,4 +1,4 @@
-import { Component, OnInit, Renderer2, AfterViewInit } from '@angular/core';
+import { Component, OnInit, Renderer2, ElementRef, AfterViewInit, ViewChild } from '@angular/core';
 import { ShowdownService } from '../../services/showdown.service';
 import { MarkdownConsumer } from '../../helpers/showdown';
 
@@ -13,9 +13,11 @@ export class AboutComponent extends MarkdownConsumer
 
   public jumboTronHeader: string = 'About';
 
-  public displayMarkdown: boolean = false;
 
-  constructor(showdown: ShowdownService) {
+  @ViewChild('Modal') Modal: ElementRef;
+  @ViewChild('Jumbotron') Jumbotron: ElementRef;
+
+  constructor(showdown: ShowdownService, private Render: Renderer2) {
     super('assets/about/Lopem.md', showdown);
   }
 
@@ -26,4 +28,26 @@ export class AboutComponent extends MarkdownConsumer
   }
 
   srcollDown() {}
+
+  openModal() {
+    this.Render.setStyle(this.Modal.nativeElement,
+      'display',
+      'block'
+    );
+    this.Render.setStyle(this.Jumbotron.nativeElement,
+      'display',
+      'none'
+    );
+  }
+
+  closeModal() {
+    this.Render.setStyle(this.Modal.nativeElement,
+      'display',
+      'none'
+    );
+    this.Render.setStyle(this.Jumbotron.nativeElement,
+      'display',
+      'grid'
+    );
+  }
 }

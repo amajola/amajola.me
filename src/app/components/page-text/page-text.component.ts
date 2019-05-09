@@ -8,9 +8,10 @@ import { Router } from '@angular/router';
   styleUrls: ['./page-text.component.scss'],
 })
 export class PageTextComponent implements OnInit {
+
   Source: string;
-  markdown_path: any = {
-    about: '../../assets/about/Lopem.md',
+  MarkdownPath: any = {
+    about: '../../../assets/about/Lopem.md',
     work: '../../assets/work/Lopem.md',
     skill: '../../assets/skills/Lopem.md',
   };
@@ -20,11 +21,11 @@ export class PageTextComponent implements OnInit {
   ngOnInit() {
     const path = this.router.url.split(':');
     if (path[1] === 'about') {
-      this.Source = this.markdown_path.about;
+      this.Source = this.MarkdownPath.about;
     } else if (path[1] === 'work') {
-      this.Source = this.markdown_path.work;
+      this.Source = this.MarkdownPath.work;
     } else {
-      this.Source = this.markdown_path.skill;
+      this.Source = this.MarkdownPath.skill;
     }
   }
 }
