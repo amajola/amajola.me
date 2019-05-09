@@ -1,4 +1,3 @@
-import { ViewChild } from '@angular/core';
 import { MarkdownConsumer } from './showdown';
 import { ShowdownService } from '../services/showdown.service';
 
@@ -17,7 +16,6 @@ export class PageBase extends MarkdownConsumer {
     this.pagestate = nextstate;
   }
 
-  // @ViewChild()
   constructor(pathToMarkdown: string, showdownservice: ShowdownService) {
     super(pathToMarkdown, showdownservice);
   }
