@@ -1,0 +1,48 @@
+.container {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+
+  .view {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    will-change: transform;
+    background-color: #ffffff;
+  }
+
+  .view.idle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 60px;
+    transform: translateX(-100%);
+    transition: transform cubic-bezier(0.19, 1, 0.22, 1) 1050ms;
+  }
+
+  .view.info {
+    overflow-y: auto;
+    transform: translateX(100%);
+    z-index: 10;
+    transition: transform cubic-bezier(0.19, 1, 0.22, 1) 850ms;
+
+    .markdown-wrapper {
+      opacity: 1;
+    }
+  }
+
+  &.state-idle {
+    .view.idle {
+      transform: translateX(0);
+    }
+  }
+
+  &.state-info {
+    .view.info {
+      transform: translateX(0);
+    }
+  }
+}
