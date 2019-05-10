@@ -12,6 +12,7 @@ import {
 } from '@angular/core';
 import { CdkScrolling } from './scrolling/scrolling.service';
 import { ScrollingConfig } from '../models/scrolling';
+import { canScroll } from './global/state';
 
 const SCROLL_OPTIONS: (
   anchor: HTMLElement,
@@ -25,6 +26,8 @@ const SCROLL_OPTIONS: (
 };
 
 export class Fullpage {
+  public canscroll: boolean = false;
+
   @ViewChildren('section') public sections: QueryList<ElementRef<HTMLElement>>;
 
   public urlstate: PageDef;
@@ -36,30 +39,34 @@ export class Fullpage {
     protected location: UrlService,
     protected host: ElementRef,
     protected scrolling: CdkScrolling
-  ) {}
+  ) {
+    canScroll.subscribe(value => (this.canscroll = value));
+  }
 
   @HostListener('window:mousewheel', ['$event']) public onmousewheel(
     event: WheelEvent
   ): void {
-    const { deltaY } = event;
+    if (this.canscroll) {
+      const { deltaY } = event;
 
-    const DIRECTION = this._getDeltaDirection(deltaY);
-    const CURRENT_INDEX = this.pages.indexOf(this.urlstate);
+      const DIRECTION = this._getDeltaDirection(deltaY);
+      const CURRENT_INDEX = this.pages.indexOf(this.urlstate);
 
-    if (!this.isanimating) {
-      this.isanimating = true;
+      if (!this.isanimating) {
+        this.isanimating = true;
 
-      let newIndex: number = CURRENT_INDEX;
-      switch (DIRECTION) {
-        case 'UP':
-          if (CURRENT_INDEX > 0) newIndex--;
-          break;
-        default:
-          if (CURRENT_INDEX < this.pages.length - 1) newIndex++;
-          break;
+        let newIndex: number = CURRENT_INDEX;
+        switch (DIRECTION) {
+          case 'UP':
+            if (CURRENT_INDEX > 0) newIndex--;
+            break;
+          default:
+            if (CURRENT_INDEX < this.pages.length - 1) newIndex++;
+            break;
+        }
+
+        this.setUrlState(this.pages[newIndex].path);
       }
-
-      this.setUrlState(this.pages[newIndex].path);
     }
   }
 

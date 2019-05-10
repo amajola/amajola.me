@@ -1,6 +1,5 @@
 // tslint:disable:no-string-literal
-
-import { ElementRef, ViewChild, Renderer2, AfterViewInit } from '@angular/core';
+import { ElementRef, ViewChild } from '@angular/core';
 import { ShowdownService } from '../services/showdown.service';
 
 export class MarkdownConsumer {
