@@ -14,7 +14,7 @@ import { ContactComponent } from './pages/contact/contact.component';
 import { MyWorkComponent } from './pages/my-work/my-work.component';
 import { SkillsComponent } from './pages/skills/skills.component';
 import { DrawingboardComponent } from './components/drawingboard/drawingboard.component';
-import { DrawingBoardDirective } from './directives/drawing-board.directive';
+// import { DrawingBoardDirective } from './directives/drawing-board.directive';
 
 @NgModule({
   declarations: [
@@ -27,7 +27,7 @@ import { DrawingBoardDirective } from './directives/drawing-board.directive';
     MyWorkComponent,
     SkillsComponent,
     DrawingboardComponent,
-    DrawingBoardDirective,
+    // DrawingBoardDirective,
   ],
   imports: [
     BrowserModule,
