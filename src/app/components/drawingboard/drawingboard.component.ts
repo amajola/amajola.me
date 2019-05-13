@@ -1,9 +1,5 @@
-import { DrawingService } from './../../services/drawing.service';
-import { Drawing } from './../../helpers/drawing';
-import { Component, OnInit, ViewChild, ElementRef, AfterViewInit, Input, HostListener } from '@angular/core';
-import { map } from 'rxjs/operators';
-import {fromEvent } from 'rxjs';
-import { ConsoleReporter } from 'jasmine';
+import { Component, ViewChild, ElementRef, AfterViewInit} from '@angular/core';
+
 
 
 @Component({
@@ -22,14 +18,13 @@ export class DrawingboardComponent implements  AfterViewInit {
    clickY = new Array();
    clickDrag = new Array();
 
-   colorPurple = "#cb3594";
-   colorGreen = "#659b41";
-   colorYellow = "#ffcf33";
-   colorBrown = "#986928";
-   colorBlack = '#000000'
+   colorPurple = '#cb3594';
+   colorGreen = '#659b41';
+   colorYellow = '#ffcf33';
+   colorBrown = '#986928';
+   colorBlack = '#000000';
 
    curColor = this.colorPurple;
-   clickColor = new Array();
    clickColor = new Array();
 
    private context: CanvasRenderingContext2D;
