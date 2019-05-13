@@ -1,7 +1,5 @@
 <canvas
   id="drawingBoard"
-  width="400"
-  height="400"
   (mousemove)="onmove($event)"
   (mousedown)="onDown($event)"
   (mouseup)="onUp()"
@@ -9,10 +7,19 @@
   #canvas
 ></canvas>
 
-<div>
-  <button (click)="curColor = colorPurple">Purple</button>
-  <button (click)="curColor = colorGreen">Green</button>
-  <button (click)="curColor = colorYellow">Yellow</button>
-  <button (click)="curColor = colorBrown">Brown</button>
-  <button (click)="curColor = colorBlack">Black</button>
+<div class="drawing-tools">
+  <button
+    *ngFor="let color of colors"
+    class="color-button"
+    [class.active]="color === curColor"
+    (click)="setColor(color)"
+  >
+    {{ color.name }}
+  </button>
+  <br />
+  <div class="clear-button" (click)="clearBoard()">X</div>
+  <!-- <button class="color-button" (click)="curColor = colorGreen">Green</button>
+  <button class="color-button" (click)="curColor = colorYellow">Yellow</button>
+  <button class="color-button" (click)="curColor = colorBrown">Brown</button>
+  <button class="color-button" (click)="curColor = colorBlack">Black</button> -->
 </div>
