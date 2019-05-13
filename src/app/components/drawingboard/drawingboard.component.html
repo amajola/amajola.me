@@ -1,0 +1,17 @@
+<canvas id="drawingBoard" 
+        width="400" 
+        height="400" 
+        (mousemove)='onmove($event)'
+        (mousedown)='onDown($event)'
+        (mouseup)='onUp()'
+        (mouseleave)='onLeave()'
+        #canvas>
+</canvas>
+
+<div>
+    <button (click)='curColor = colorPurple'>Purple</button>
+    <button (click)='curColor = colorGreen'>Green</button>
+    <button (click)='curColor = colorYellow'>Yellow</button>
+    <button (click)='curColor = colorBrown'>Brown</button>
+    <button (click)='curColor = colorBlack'>Black</button>
+</div>

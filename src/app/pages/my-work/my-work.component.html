@@ -1,6 +1,13 @@
-
-<div class="container">
-    <app-jumbotron [ViewImg]=displayImage [Header]=jumboTronHeader class="Jumb">
+<div class="container" [ngClass]="'state-' + getState()">
+    <div class="view idle" (click)="viewInfo()">
+      <app-jumbotron
+        [ViewImg]="displayImage"
+        [Header]="jumboTronHeader"
+        class="Jumb"
+      ></app-jumbotron>
+    </div>
     
-    </app-jumbotron>
+    <div class="view info" (click)="goBack()">
+      <div #contentOutlet></div>
+    </div>
 </div>

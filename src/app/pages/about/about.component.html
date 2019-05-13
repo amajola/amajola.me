@@ -1,16 +1,14 @@
-<div class="container" #Jumbotron>
-  <app-jumbotron
-    [ViewImg]="displayImage"
-    [Header]="jumboTronHeader"
-    class="Jumb"
-    (click)="openModal()"
-  ></app-jumbotron>
-</div>
-
-<div class="Markdown" #Modal>
-  <div class="modal">
-    <div #contentOutlet></div>
-
-    <button (click)="closeModal()" >Close</button>
+<div class="container" [ngClass]="'state-' + getState()">
+    <div class="view idle" (click)="viewInfo()">
+      <app-jumbotron
+        [ViewImg]="displayImage"
+        [Header]="jumboTronHeader"
+        class="Jumb"
+      ></app-jumbotron>
+    </div>
+  
+    <div class="view info" (click)="goBack()">
+      <div #contentOutlet></div>
+    </div>
   </div>
-</div>
+  

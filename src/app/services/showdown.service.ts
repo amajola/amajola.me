@@ -24,7 +24,7 @@ export class ShowdownService {
   private Converter;
 
   constructor(private Http: HttpClient) {
-    this.Converter = new Showdown.Converter();
+    this.Converter = new Showdown.Converter(DefaultOptions);
   }
 
   getFile(Path: string) {

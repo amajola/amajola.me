@@ -1,53 +1,35 @@
-import { Component, OnInit, Renderer2, ElementRef, AfterViewInit, ViewChild } from '@angular/core';
+import { Component, OnInit, AfterViewInit, Inject } from '@angular/core';
 import { ShowdownService } from '../../services/showdown.service';
+import { PageBase, PageState } from './../../helpers/page';
 import { MarkdownConsumer } from '../../helpers/showdown';
+import { canScroll } from 'src/app/helpers/global/state';
 
 @Component({
   selector: 'app-about',
   templateUrl: './about.component.html',
-  styleUrls: ['./about.component.scss'],
+  styleUrls: ['../page.scss', './about.component.scss'],
 })
-export class AboutComponent extends MarkdownConsumer
-  implements OnInit, AfterViewInit {
+export class AboutComponent extends PageBase implements OnInit, AfterViewInit {
   public displayImage: string = '../../../assets/about/amajola.jpg';
 
   public jumboTronHeader: string = 'About';
 
-
-  @ViewChild('Modal') Modal: ElementRef;
-  @ViewChild('Jumbotron') Jumbotron: ElementRef;
-
-  constructor(showdown: ShowdownService, private Render: Renderer2) {
-    super('assets/about/Lopem.md', showdown);
+  constructor(@Inject(ShowdownService) showdown: ShowdownService) {
+    super('assets/skills/Lopem.md', showdown);
   }
 
   ngOnInit() {}
 
-  ngAfterViewInit(): void {
-    console.log('Hello World');
+  public ngAfterViewInit(): void {}
+
+  public viewInfo(): void {
+    this.setState(PageState.info);
+    canScroll.next(false);
   }
 
-  srcollDown() {}
-
-  openModal() {
-    this.Render.setStyle(this.Modal.nativeElement,
-      'display',
-      'block'
-    );
-    this.Render.setStyle(this.Jumbotron.nativeElement,
-      'display',
-      'none'
-    );
+  public goBack(): void {
+    this.setState(PageState.idle);
+    canScroll.next(true);
   }
 
-  closeModal() {
-    this.Render.setStyle(this.Modal.nativeElement,
-      'display',
-      'none'
-    );
-    this.Render.setStyle(this.Jumbotron.nativeElement,
-      'display',
-      'grid'
-    );
-  }
 }

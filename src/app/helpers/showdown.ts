@@ -44,7 +44,6 @@ export class MarkdownConsumer {
     const file = (await this.markdownRenderer.getFile(
       this.pathToMarkdown
     )) as string;
-
     this.contentoutlet.nativeElement.innerHTML = file;
 
     // All compiled markdown will be rendered into
