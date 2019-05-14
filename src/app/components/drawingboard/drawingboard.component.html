@@ -1,25 +1,25 @@
 <canvas
   id="drawingBoard"
-  (mousemove)="onmove($event)"
-  (mousedown)="onDown($event)"
-  (mouseup)="onUp()"
-  (mouseleave)="onLeave()"
+  (mousemove)="onmousemove($event)"
+  (mousedown)="onmousedown($event)"
+  (mouseup)="stopDrawing()"
+  (mouseleave)="stopDrawing()"
   #canvas
 ></canvas>
 
-<div class="drawing-tools">
+<div class="drawing-tools" [class.shown]="userHasDrawn">
   <button
     *ngFor="let color of colors"
     class="color-button"
-    [class.active]="color === curColor"
+    [class.active]="color === activeDrawColor"
     (click)="setColor(color)"
   >
     {{ color.name }}
   </button>
   <br />
   <div class="clear-button" (click)="clearBoard()">X</div>
-  <!-- <button class="color-button" (click)="curColor = colorGreen">Green</button>
-  <button class="color-button" (click)="curColor = colorYellow">Yellow</button>
-  <button class="color-button" (click)="curColor = colorBrown">Brown</button>
-  <button class="color-button" (click)="curColor = colorBlack">Black</button> -->
+</div>
+
+<div class="user-draw-message" *ngIf="!userHasDrawn">
+  <span>DRAW SOMETHING</span>
 </div>

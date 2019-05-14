@@ -15,14 +15,22 @@
     padding: 0;
   }
 
+  .user-draw-message {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+  }
+
   .drawing-tools {
     position: absolute;
-    left: 0;
+    left: -40px;
     top: 50%;
     width: 40px;
     display: flex;
     flex-direction: column;
     transform: translateY(-50%);
+    will-change: left;
+    transition: left cubic-bezier(0.165, 0.84, 0.44, 1) 300ms;
 
     .color-button {
       width: 40px;
@@ -38,6 +46,10 @@
       width: 40px;
       height: 40px;
       background-color: red;
+    }
+
+    &.shown {
+      left: 0;
     }
   }
 }

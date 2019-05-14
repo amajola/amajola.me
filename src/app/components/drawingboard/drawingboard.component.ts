@@ -5,6 +5,9 @@ import {
   ElementRef,
   AfterViewInit,
   HostListener,
+  HostBinding,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
 } from '@angular/core';
 import colors from './colors';
 
@@ -12,12 +15,15 @@ import colors from './colors';
   selector: 'app-drawingboard',
   templateUrl: './drawingboard.component.html',
   styleUrls: ['./drawingboard.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DrawingboardComponent implements AfterViewInit {
   private context: CanvasRenderingContext2D;
 
   /** Template reference to the canvas element */
   @ViewChild('canvas') canvasEl: ElementRef<HTMLCanvasElement>;
+
+  @HostBinding('class.is-dirty') public userHasDrawn: boolean = false;
 
   public get canvas(): HTMLCanvasElement {
     return this.canvasEl.nativeElement;
@@ -37,7 +43,7 @@ export class DrawingboardComponent implements AfterViewInit {
     i => i.name === 'black'
   );
 
-  constructor() {}
+  constructor(protected readonly changedetector: ChangeDetectorRef) {}
 
   ngAfterViewInit() {
     this.context = (this.canvasEl
@@ -63,7 +69,7 @@ export class DrawingboardComponent implements AfterViewInit {
     this.clickColor = [];
   }
 
-  onmove($event) {
+  public onmousemove($event) {
     if (this.drawBool) {
       this.addClick(
         $event.pageX - this.canvasEl.nativeElement.offsetLeft,
@@ -72,41 +78,35 @@ export class DrawingboardComponent implements AfterViewInit {
       );
       this.redraw();
     }
-    // console.log(`PageX ${$event.pageX} \n Page ${$event.pageY} Fail`);
   }
 
-  onLeave() {
-    this.drawBool = false;
-  }
-
-  onDown($event) {
+  public onmousedown($event) {
     const mouseX = $event.pageX - this.canvasEl.nativeElement.offsetLeft;
     const mouseY = $event.pageY - this.canvasEl.nativeElement.offsetTop;
 
     this.drawBool = true;
-    this.addClick(
-      $event.pageX - this.canvasEl.nativeElement.offsetLeft,
-      $event.pageY - this.canvasEl.nativeElement.offsetTop,
-      0
-    );
+    this.addClick(mouseX, mouseY, 0);
     this.redraw();
-    //  console.log(`PageX ${$event.pageX} \n Page ${$event.pageY}`);
   }
 
-  onUp() {
+  public stopDrawing(): void {
     this.drawBool = false;
+    this.changedetector.detectChanges();
   }
 
-  addClick(x, y, dragging) {
+  private addClick(x, y, dragging) {
+    if (!this.userHasDrawn) {
+      this.userHasDrawn = true;
+      this.changedetector.detectChanges();
+    }
+
     this.clickX.push(x);
     this.clickY.push(y);
     this.clickDrag.push(dragging);
     this.clickColor.push(this.activeDrawColor.value);
   }
 
-  redraw() {
-    // this.context.clearRect(0, 0, this.context.canvas.width, this.context.canvas.height); // Clears the canvas
-
+  private redraw() {
     this.context.strokeStyle = '#000000';
     this.context.lineJoin = 'round';
     this.context.lineWidth = 2;
