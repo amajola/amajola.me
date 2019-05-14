@@ -12,14 +12,17 @@
     *ngFor="let color of colors"
     class="color-button"
     [class.active]="color === activeDrawColor"
+    [style.backgroundColor]="color.value"
     (click)="setColor(color)"
   >
     {{ color.name }}
   </button>
   <br />
-  <div class="clear-button" (click)="clearBoard()">X</div>
+  <div class="clear-button" (click)="clearBoard()">
+    <img src="assets/delete-icon.svg" alt="delete" />
+  </div>
 </div>
 
 <div class="user-draw-message" *ngIf="!userHasDrawn">
-  <span>DRAW SOMETHING</span>
+  <img src="assets/drawing-hint.svg" alt="Try drawing something" />
 </div>

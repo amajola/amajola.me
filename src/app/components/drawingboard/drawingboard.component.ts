@@ -20,25 +20,33 @@ import colors from './colors';
 export class DrawingboardComponent implements AfterViewInit {
   private context: CanvasRenderingContext2D;
 
-  /** Template reference to the canvas element */
+  // Template reference to the canvas element
   @ViewChild('canvas') canvasEl: ElementRef<HTMLCanvasElement>;
 
+  // Tracks whether or not the user has drawn
+  // on the board, and if they have, will mark
+  // the board as dirty
   @HostBinding('class.is-dirty') public userHasDrawn: boolean = false;
 
+  // Gives safe acces to the canvas
+  // element
   public get canvas(): HTMLCanvasElement {
     return this.canvasEl.nativeElement;
   }
 
-  /** Canvas 2d context */
+  // Track whether or not the use is drawing
   drawBool: Boolean = false;
 
+  // Tracking stors for updating the canvas
   public clickX: any[] = [];
   public clickY: any[] = [];
   public clickDrag: any[] = [];
   public clickColor: any[] = [];
 
+  // The color list from './color.ts'
   public colors: DrawingboardColor[] = colors;
 
+  // The current color of the drawing tool
   public activeDrawColor: DrawingboardColor = this.colors.find(
     i => i.name === 'black'
   );
@@ -52,15 +60,23 @@ export class DrawingboardComponent implements AfterViewInit {
     this.onresize();
   }
 
+  // Becuase canavas needs a width and a height context,
+  // and because we need to have the drawing board adapt
+  // to different screen sizes, we set the width and the
+  // height of the canvas element to the width and the
+  // height of the window
   @HostListener('window:resize') public onresize(): void {
     this.canvasEl.nativeElement.width = window.innerWidth;
     this.canvasEl.nativeElement.height = window.innerHeight;
   }
 
+  // Will select a new color for the user to draw with
   public setColor(color: DrawingboardColor): void {
     this.activeDrawColor = color;
   }
 
+  // Resets the state of the board so that the user has
+  // a clean canvas to draw on.
   public clearBoard(): void {
     this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
     this.clickX = [];
@@ -69,6 +85,8 @@ export class DrawingboardComponent implements AfterViewInit {
     this.clickColor = [];
   }
 
+  // Tracks mouse movement if the user is busy drawing,
+  // and draws a line to the canvas
   public onmousemove($event) {
     if (this.drawBool) {
       this.addClick(
