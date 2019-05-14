@@ -68,6 +68,10 @@ export class DrawingboardComponent implements AfterViewInit {
   @HostListener('window:resize') public onresize(): void {
     this.canvasEl.nativeElement.width = window.innerWidth;
     this.canvasEl.nativeElement.height = window.innerHeight;
+
+    // because the context of our canvas has changed, we
+    // need to clear it
+    this.clearBoard();
   }
 
   // Will select a new color for the user to draw with
