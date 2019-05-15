@@ -1,5 +1,5 @@
 <!-- This is guy a idea Using CSS GRID tell me what you think -->
-<div class=container>
+<!-- <div class=container>
 
   <div class=image-container>
       <img [src]="ViewImg" class="image">
@@ -12,5 +12,23 @@
   </div>
 
 
-</div>
+</div> -->
 
+<div class="card-wrapper">
+  <div
+    class="card-image"
+    [style.backgroundImage]="'url(' + imageSrc + ')'"
+  ></div>
+
+  <div class="content-wrapper">
+    <h2>{{ title }}</h2>
+
+    <div class="content-outlet">
+      <ng-content></ng-content>
+    </div>
+
+    <div class="action">
+      <button>SEE MORE</button>
+    </div>
+  </div>
+</div>

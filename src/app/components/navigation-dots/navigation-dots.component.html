@@ -1,7 +1,10 @@
-<div class=container>
-  <div class="navdot"></div>
-  <div class="nav-dot-active"></div>
-  <div class="navdot"></div>
-  <div class="navdot"></div>
-  <div class="navdot"></div>
+<div class="container">
+  <ng-template ngFor [ngForOf]="pages" let-page>
+    <div
+      class="dot"
+      (click)="navigateTo(page.path)"
+      [class.active]="page.name === currentState?.name"
+      [attr.aria-title]="page.name"
+    ></div>
+  </ng-template>
 </div>

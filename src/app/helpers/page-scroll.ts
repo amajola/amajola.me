@@ -12,7 +12,7 @@ import {
 } from '@angular/core';
 import { CdkScrolling } from './scrolling/scrolling.service';
 import { ScrollingConfig } from '../models/scrolling';
-import { canScroll } from './global/state';
+import { canScroll, urlState } from './global/state';
 
 const SCROLL_OPTIONS: (
   anchor: HTMLElement,
@@ -89,6 +89,8 @@ export class Fullpage {
       await this.scrolling.scroll(SCROLL_OPTIONS(section, animate));
       this.isanimating = false;
       this.location.set(nextState.path);
+
+      urlState.next(this.urlstate);
       return;
     }
 
