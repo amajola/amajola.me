@@ -1,14 +1,5 @@
 .container {
-    display: grid;
-    .Jumb {
-        margin: 10% 5% 5% 5%;
-        .icon {
-            width: 50px;
-        }
-        .icons-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            margin-left: 10%;
-        }
+    app-navigation-dots {
+        margin-left: 19%;
     }
 }

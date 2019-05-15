@@ -1,0 +1,22 @@
+@import '../../shared/global.scss';
+
+.container {
+    background-color:lighten($color:  #323131, $amount: 2);
+    width: 40px;
+    height: 280px;
+    border-radius: 10px;
+    padding-top: 60%;
+    .navdot {
+        background-color: white;
+        width: 20px;
+        height: 20px;
+        margin-left: 10px;
+        margin-bottom: 80%;
+        border-radius: 50%;
+        background-color: #565656;;
+    }
+    .nav-dot-active {
+        @extend .navdot;
+        background-color: white;
+    }
+}

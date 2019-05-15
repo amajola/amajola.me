@@ -14,6 +14,7 @@ import { ContactComponent } from './pages/contact/contact.component';
 import { MyWorkComponent } from './pages/my-work/my-work.component';
 import { SkillsComponent } from './pages/skills/skills.component';
 import { DrawingboardComponent } from './components/drawingboard/drawingboard.component';
+import { NavigationDotsComponent } from './components/navigation-dots/navigation-dots.component';
 
 
 @NgModule({
@@ -26,6 +27,7 @@ import { DrawingboardComponent } from './components/drawingboard/drawingboard.co
     MyWorkComponent,
     SkillsComponent,
     DrawingboardComponent,
+    NavigationDotsComponent,
   ],
   imports: [
     BrowserModule,
