@@ -1,13 +1,14 @@
 <div class="container" [ngClass]="'state-' + getState()">
-    <div class="view idle" (click)="viewInfo()">
-      <app-jumbotron
-        [ViewImg]="displayImage"
-        [Header]="jumboTronHeader"
-        class="Jumb"
-      ></app-jumbotron>
-    </div>
-    
-    <div class="view info" (click)="goBack()">
-      <div #contentOutlet></div>
-    </div>
+  <div class="view idle" (click)="viewInfo()">
+    <!-- <app-jumbotron
+      [ViewImg]="displayImage"
+      [Header]="jumboTronHeader"
+      class="Jumb"
+    ></app-jumbotron> -->
+    <h1>IDLE STATE</h1>
+  </div>
+
+  <div class="view info" (click)="goBack()">
+    <div #contentOutlet></div>
+  </div>
 </div>
