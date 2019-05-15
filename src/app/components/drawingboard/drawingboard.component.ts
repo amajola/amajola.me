@@ -1,89 +1,144 @@
-import { Component, ViewChild, ElementRef, AfterViewInit} from '@angular/core';
-
-
+import { DrawingboardColor } from './../../models/drawingboard';
+import {
+  Component,
+  ViewChild,
+  ElementRef,
+  AfterViewInit,
+  HostListener,
+  HostBinding,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+} from '@angular/core';
+import colors from './colors';
 
 @Component({
   selector: 'app-drawingboard',
   templateUrl: './drawingboard.component.html',
-  styleUrls: ['./drawingboard.component.scss']
+  styleUrls: ['./drawingboard.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class DrawingboardComponent implements  AfterViewInit {
+export class DrawingboardComponent implements AfterViewInit {
+  private context: CanvasRenderingContext2D;
 
-   /** Template reference to the canvas element */
-   @ViewChild('canvas') canvasEl: ElementRef;
+  // Template reference to the canvas element
+  @ViewChild('canvas') canvasEl: ElementRef<HTMLCanvasElement>;
 
-   /** Canvas 2d context */
-   drawBool: Boolean = false;
-   clickX = new Array();
-   clickY = new Array();
-   clickDrag = new Array();
+  // Tracks whether or not the user has drawn
+  // on the board, and if they have, will mark
+  // the board as dirty
+  @HostBinding('class.is-dirty') public userHasDrawn: boolean = false;
 
-   colorPurple = '#cb3594';
-   colorGreen = '#659b41';
-   colorYellow = '#ffcf33';
-   colorBrown = '#986928';
-   colorBlack = '#000000';
+  // Gives safe acces to the canvas
+  // element
+  public get canvas(): HTMLCanvasElement {
+    return this.canvasEl.nativeElement;
+  }
 
-   curColor = this.colorPurple;
-   clickColor = new Array();
+  // Track whether or not the use is drawing
+  drawBool: Boolean = false;
 
-   private context: CanvasRenderingContext2D;
+  // Tracking stors for updating the canvas
+  public clickX: any[] = [];
+  public clickY: any[] = [];
+  public clickDrag: any[] = [];
+  public clickColor: any[] = [];
 
-   constructor() {}
+  // The color list from './color.ts'
+  public colors: DrawingboardColor[] = colors;
 
-   ngAfterViewInit() {
-     this.context = (this.canvasEl.nativeElement as HTMLCanvasElement).getContext('2d');
-   }
+  // The current color of the drawing tool
+  public activeDrawColor: DrawingboardColor = this.colors.find(
+    i => i.name === 'black'
+  );
 
-   onmove($event) {
+  constructor(protected readonly changedetector: ChangeDetectorRef) {}
+
+  ngAfterViewInit() {
+    this.context = (this.canvasEl
+      .nativeElement as HTMLCanvasElement).getContext('2d');
+
+    this.onresize();
+  }
+
+  // Becuase canavas needs a width and a height context,
+  // and because we need to have the drawing board adapt
+  // to different screen sizes, we set the width and the
+  // height of the canvas element to the width and the
+  // height of the window
+  @HostListener('window:resize') public onresize(): void {
+    this.canvasEl.nativeElement.width = window.innerWidth;
+    this.canvasEl.nativeElement.height = window.innerHeight;
+
+    // because the context of our canvas has changed, we
+    // need to clear it
+    this.clearBoard();
+  }
+
+  // Will select a new color for the user to draw with
+  public setColor(color: DrawingboardColor): void {
+    this.activeDrawColor = color;
+  }
+
+  // Resets the state of the board so that the user has
+  // a clean canvas to draw on.
+  public clearBoard(): void {
+    this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    this.clickX = [];
+    this.clickY = [];
+    this.clickDrag = [];
+    this.clickColor = [];
+  }
+
+  // Tracks mouse movement if the user is busy drawing,
+  // and draws a line to the canvas
+  public onmousemove($event) {
     if (this.drawBool) {
-      this.addClick($event.pageX - this.canvasEl.nativeElement.offsetLeft,
-                    $event.pageY - this.canvasEl.nativeElement.offsetTop, true);
+      this.addClick(
+        $event.pageX - this.canvasEl.nativeElement.offsetLeft,
+        $event.pageY - this.canvasEl.nativeElement.offsetTop,
+        true
+      );
       this.redraw();
     }
-    // console.log(`PageX ${$event.pageX} \n Page ${$event.pageY} Fail`);
-   }
+  }
 
-   onLeave() {
+  public onmousedown($event) {
+    const mouseX = $event.pageX - this.canvasEl.nativeElement.offsetLeft;
+    const mouseY = $event.pageY - this.canvasEl.nativeElement.offsetTop;
+
+    this.drawBool = true;
+    this.addClick(mouseX, mouseY, 0);
+    this.redraw();
+  }
+
+  public stopDrawing(): void {
     this.drawBool = false;
-   }
+    this.changedetector.detectChanges();
+  }
 
-   onDown($event) {
-     const mouseX = $event.pageX - this.canvasEl.nativeElement.offsetLeft;
-     const mouseY = $event.pageY - this.canvasEl.nativeElement.offsetTop;
+  private addClick(x, y, dragging) {
+    if (!this.userHasDrawn) {
+      this.userHasDrawn = true;
+      this.changedetector.detectChanges();
+    }
 
-     this.drawBool = true;
-     this.addClick($event.pageX - this.canvasEl.nativeElement.offsetLeft,
-                    $event.pageY - this.canvasEl.nativeElement.offsetTop, 0);
-     this.redraw();
-    //  console.log(`PageX ${$event.pageX} \n Page ${$event.pageY}`);
-   }
+    this.clickX.push(x);
+    this.clickY.push(y);
+    this.clickDrag.push(dragging);
+    this.clickColor.push(this.activeDrawColor.value);
+  }
 
-   onUp() {
-     this.drawBool = false;
-   }
-
-   addClick(x, y, dragging) {
-      this.clickX.push(x);
-      this.clickY.push(y);
-      this.clickDrag.push(dragging);
-      this.clickColor.push(this.curColor);
-      // console.log(`this.clickX ${this.clickX} \n this.clickY ${this.clickY} \n this.clickDrag ${this.clickDrag}`);
-   }
-
-   redraw() {
-    // this.context.clearRect(0, 0, this.context.canvas.width, this.context.canvas.height); // Clears the canvas
-
+  private redraw() {
     this.context.strokeStyle = '#000000';
     this.context.lineJoin = 'round';
-    this.context.lineWidth = 10;
+    this.context.lineWidth = 2;
 
     for (let i = 0; i < this.clickX.length; i++) {
       this.context.beginPath();
       if (this.clickDrag[i] && i) {
         this.context.moveTo(this.clickX[i - 1], this.clickY[i - 1]);
-       } else {
-         this.context.moveTo(this.clickX[i] - 1, this.clickY[i]);
+      } else {
+        this.context.moveTo(this.clickX[i] - 1, this.clickY[i]);
       }
       this.context.lineTo(this.clickX[i], this.clickY[i]);
       this.context.closePath();
