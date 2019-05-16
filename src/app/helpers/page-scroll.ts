@@ -10,7 +10,7 @@ import {
 } from '@angular/core';
 import { CdkScrolling } from './scrolling/scrolling.service';
 import { ScrollingConfig } from '../models/scrolling';
-import { canScroll } from './global/state';
+import { canScroll, urlState } from './global/state';
 
 // Generates the options object
 // for the scroll service
@@ -128,6 +128,8 @@ export class Fullpage {
       // Update the url to match the page
       // we are on
       this.location.set(nextState.path);
+
+      urlState.next(this.urlstate);
       return;
     }
 

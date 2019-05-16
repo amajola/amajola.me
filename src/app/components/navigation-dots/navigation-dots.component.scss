@@ -1,0 +1,87 @@
+@import '../../shared/global.scss';
+
+:host {
+  display: block;
+  position: fixed;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+
+  .container {
+    width: 40px;
+    height: auto;
+    padding: 40px 0;
+    background-color: #323131;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.4);
+    border-radius: 15px;
+
+    .dot {
+      width: 20px;
+      height: 20px;
+      background-color: #565656;
+      margin-bottom: 40px;
+      margin-left: 10px;
+      border-radius: 50%;
+      position: relative;
+      cursor: pointer;
+
+      &.active {
+        background-color: #ffffff;
+        box-shadow: 0px 0px 10px rgba(167, 167, 167, 0.3);
+      }
+
+      &::before {
+        content: '';
+        display: block;
+        width: 20px;
+        height: 20px;
+        background-color: #e7e7e7;
+        position: absolute;
+        top: 0;
+        left: 0;
+        border-radius: 50%;
+        z-index: 10;
+        opacity: 0;
+      }
+
+      &::after {
+        content: attr(aria-title);
+        display: block;
+        position: absolute;
+        right: -10px;
+        top: 50%;
+        height: 40px;
+        margin-top: -20px;
+        line-height: 40px;
+        padding-right: 40px;
+        width: 140px;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+        border-radius: 20px;
+        background-color: #ffffff;
+        text-align: center;
+        font-size: 16px;
+        opacity: 0;
+        text-indent: 15px;
+        transform: scale(0);
+        transform-origin: right center;
+        will-change: transform, opacity;
+        transition: cubic-bezier(0.165, 0.84, 0.44, 1) 300ms;
+      }
+
+      &:nth-last-child(1) {
+        margin-bottom: 0;
+      }
+
+      &:hover {
+        &::after {
+          transform: scale(1);
+          opacity: 1;
+        }
+
+        &::before {
+          opacity: 1;
+        }
+      }
+    }
+  }
+}

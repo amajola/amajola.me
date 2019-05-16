@@ -1,32 +1,82 @@
-    
-@import url('https://fonts.googleapis.com/css?family=Roboto+Slab');
+:host {
+  display: block;
+  padding-left: 200px;
+  width: 80%;
+  max-width: 850px;
 
-.container {
-    display: grid;
-    width: 80%;
-    height: 100%;
-    grid-template-columns: 1fr 2fr 2fr;
-    border-radius: 20px;
-    box-shadow: 10px 10px 5px 0px grey;
-    .picture {
-        height: 100%;
-        grid-column: 1/3;
-        .jumbo-img {
-            width: 100%;
-            height: 100%;
-            border-radius: 20px 0 0 20px;
-            object-fit: cover
-        }
+  .card-wrapper {
+    width: 100%;
+    height: auto;
+    background: #ffffff;
+    box-shadow: 0px 4px 12px rgba(49, 49, 49, 0.4);
+    border-radius: 15px;
+    padding-left: 200px;
+    position: relative;
+
+    .card-image {
+      position: absolute;
+      height: 260px;
+      width: 360px;
+      left: -180px;
+      top: 50%;
+      margin-top: -130px;
+      box-shadow: 0px 0px 10px rgba(49, 49, 49, 0.4);
+      border-radius: 15px;
+      background-position: center center;
+      background-size: cover;
     }
-    .desc-text {
-        grid-column: 3/3;
-        h1 {
-            font-family: 'Roboto Slab', serif;
-            font-size: 100px;
-            margin-left: 5%;
-        }
+
+    .content-wrapper {
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      min-height: 320px;
+      text-align: center;
+
+      .content-outlet {
+        flex: 1;
+      }
     }
-    ng-content {
-        display: inline-block;
-    }
+  }
 }
+
+// @import url('https://fonts.googleapis.com/css?family=Roboto+Slab');
+// @import url('https://fonts.googleapis.com/css?family=Libre+Baskerville');
+
+// $main-width: 50vw;
+// $main-hieght: 60vh;
+
+// .container {
+//     display: grid;
+//     grid-column: 1fr 2fr 1fr;
+//     .main {
+//         grid-column: 2/4;
+//         width:  $main-width;
+//         height: $main-hieght;
+//         border-radius: 15px;
+//         box-shadow: 0px 4px 12px rgba(49, 49, 49, 0.4);
+//         .header {
+//             margin-top: 5%;
+//             margin-left: 39%;
+//             font-size: 56px;
+//             text-align: center;
+//             font-family: 'Libre Baskerville', serif;
+//             font-style: normal;
+//             font-weight: normal;
+//             text-align: center;
+//         }
+//     }
+//     .image-container {
+//         left: 40%;
+//         width: 25vw;
+//         height: 35vh;
+//         grid-column: 1/2;
+//         margin-top: 90px;
+//         position: relative;
+//         .image {
+//             width: 100%;
+//             border-radius: 20px 20px 20px 20px;
+//             box-shadow: 0px 0px 10px rgba(49, 49, 49, 0.4);
+//         }
+//     }
+// }
