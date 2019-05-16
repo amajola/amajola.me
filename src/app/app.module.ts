@@ -1,15 +1,16 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
+
+import { CdkScrollingModule } from './helpers/scrolling/scrolling.module';
 
 import { AppComponent } from './app.component';
 
-import { HttpClientModule } from '@angular/common/http';
-import { CdkScrollingModule } from './helpers/scrolling/scrolling.module';
-import { HomePageComponent } from './pages/home-page/home-page.component';
-import { AboutComponent } from './pages/about/about.component';
-import { ContactComponent } from './pages/contact/contact.component';
-import { MyWorkComponent } from './pages/my-work/my-work.component';
-import { SkillsComponent } from './pages/skills/skills.component';
+import { HomePageComponent } from '@pages/home-page';
+import { AboutComponent } from '@pages/about';
+import { ContactComponent } from '@pages/contact';
+import { MyWorkComponent } from '@pages/my-work';
+import { SkillsComponent } from '@pages/skills';
 
 import { JumbotronComponent } from '@components/jumbotron';
 import { DrawingboardComponent } from '@components/drawingboard';
