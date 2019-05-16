@@ -3,10 +3,8 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 
-
 import { JumbotronComponent } from './components/jumbotron/jumbotron.component';
 import { HttpClientModule } from '@angular/common/http';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CdkScrollingModule } from './helpers/scrolling/scrolling.module';
 import { HomePageComponent } from './pages/home-page/home-page.component';
 import { AboutComponent } from './pages/about/about.component';
@@ -16,7 +14,6 @@ import { SkillsComponent } from './pages/skills/skills.component';
 import { DrawingboardComponent } from './components/drawingboard/drawingboard.component';
 import { NavigationDotsComponent } from './components/navigation-dots/navigation-dots.component';
 import { ButtonComponent } from './components/button/button.component';
-
 
 @NgModule({
   declarations: [
@@ -31,12 +28,7 @@ import { ButtonComponent } from './components/button/button.component';
     NavigationDotsComponent,
     ButtonComponent,
   ],
-  imports: [
-    BrowserModule,
-    HttpClientModule,
-    BrowserAnimationsModule,
-    CdkScrollingModule,
-  ],
+  imports: [BrowserModule, HttpClientModule, CdkScrollingModule],
   providers: [],
   bootstrap: [AppComponent],
 })
