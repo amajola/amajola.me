@@ -7,8 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ContactComponent implements OnInit {
 
-  displayImage: String = "../../../assets/contact_me/FullSizeRender.JPG"
-  jumboTronHeader: String =  "Contact"
+  displayImage: String = '../../../assets/contact_me/FullSizeRender.JPG';
+  jumboTronHeader: String =  'Contact';
   constructor() { }
 
   ngOnInit() {

@@ -1,13 +1,34 @@
-<div class="container">
+<!-- This is guy a idea Using CSS GRID tell me what you think -->
+<!-- <div class=container>
 
-    <div class="picture">
-      <img [src]="ViewImg" class="jumbo-img" />
+  <div class=image-container>
+      <img [src]="ViewImg" class="image">
+  </div>
+  <div class=main>
+
+    <div>
+      <h1 class=header>{{Header}}</h1>
     </div>
+  </div>
 
-    <div class="desc-text">
-      <h1 class="desc-header">{{ Header }}</h1>
+
+</div> -->
+
+<div class="card-wrapper">
+  <div
+    class="card-image"
+    [style.backgroundImage]="'url(' + imageSrc + ')'"
+  ></div>
+
+  <div class="content-wrapper">
+    <h2>{{ title }}</h2>
+
+    <div class="content-outlet">
       <ng-content></ng-content>
     </div>
-    
-</div>
 
+    <div class="action">
+      <button>SEE MORE</button>
+    </div>
+  </div>
+</div>

@@ -12,6 +12,7 @@ import { Fullpage } from './helpers/page-scroll';
 import { pages } from './app.pages';
 import { Title } from '@angular/platform-browser';
 import { CdkScrolling } from './helpers/scrolling/scrolling.service';
+import { Router } from './helpers/global/state';
 
 @Component({
   selector: 'app-root',
@@ -30,11 +31,12 @@ export class AppComponent extends Fullpage implements OnInit, AfterViewInit {
     super(pages, title, location, host, scrolling);
   }
 
-  public ngOnInit(): void {}
+  public ngOnInit(): void {
+    Router.onRouterReuest.subscribe(url => this.setUrlState(url));
+  }
 
   public ngAfterViewInit(): void {
     this.setUrlState(this.location.path);
-
     this.isready = true;
   }
 }

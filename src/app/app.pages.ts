@@ -15,8 +15,7 @@ export const pages: PageDef[] = [
   },
   {
     name: 'Skills',
-    path: '/skills'
-
+    path: '/skills',
   },
   {
     name: 'Contact',

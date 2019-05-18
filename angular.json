@@ -23,13 +23,7 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "src/tsconfig.app.json",
             "assets": ["src/favicon.ico", "src/assets"],
-            "styles": [
-              "src/styles.scss",
-              "node_modules/marked/lib/marked.js",
-              "node_modules/prismjs/themes/prism-okaidia.css"
-            ],
-            "scripts": ["node_modules/prismjs/prism.js"],
-            "es5BrowserSupport": true
+            "styles": ["src/styles.scss"]
           },
           "configurations": {
             "production": {
@@ -46,13 +40,33 @@
               "namedChunks": false,
               "aot": true,
               "extractLicenses": true,
-              "vendorChunk": false,
+              "vendorChunk": true,
               "buildOptimizer": true,
+              "commonChunk": true,
               "budgets": [
                 {
-                  "type": "initial",
-                  "maximumWarning": "2mb",
-                  "maximumError": "5mb"
+                  "type": "bundle",
+                  "name": "main",
+                  "maximumWarning": "30kb",
+                  "maximumError": "34kb"
+                },
+                {
+                  "type": "bundle",
+                  "name": "vendor",
+                  "maximumWarning": "270kb",
+                  "maximumError": "290kb"
+                },
+                {
+                  "type": "bundle",
+                  "name": "common",
+                  "maximumWarning": "10kb",
+                  "maximumError": "20kb"
+                },
+                {
+                  "type": "bundle",
+                  "name": "styles",
+                  "maximumWarning": "2kb",
+                  "maximumError": "5kb"
                 }
               ]
             }

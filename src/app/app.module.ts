@@ -1,25 +1,25 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
+
+import { CdkScrollingModule } from './helpers/scrolling/scrolling.module';
 
 import { AppComponent } from './app.component';
 
-import { PageTextComponent } from './components/page-text/page-text.component';
-import { JumbotronComponent } from './components/jumbotron/jumbotron.component';
-import { HttpClientModule } from '@angular/common/http';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { CdkScrollingModule } from './helpers/scrolling/scrolling.module';
-import { HomePageComponent } from './pages/home-page/home-page.component';
-import { AboutComponent } from './pages/about/about.component';
-import { ContactComponent } from './pages/contact/contact.component';
-import { MyWorkComponent } from './pages/my-work/my-work.component';
-import { SkillsComponent } from './pages/skills/skills.component';
-import { DrawingboardComponent } from './components/drawingboard/drawingboard.component';
+import { HomePageComponent } from '@pages/home-page';
+import { AboutComponent } from '@pages/about';
+import { ContactComponent } from '@pages/contact';
+import { MyWorkComponent } from '@pages/my-work';
+import { SkillsComponent } from '@pages/skills';
 
+import { JumbotronComponent } from '@components/jumbotron';
+import { DrawingboardComponent } from '@components/drawingboard';
+import { NavigationDotsComponent } from '@components/navigation-dots';
+import { ButtonComponent } from '@components/button';
 
 @NgModule({
   declarations: [
     AppComponent,
-    PageTextComponent,
     JumbotronComponent,
     HomePageComponent,
     AboutComponent,
@@ -27,13 +27,10 @@ import { DrawingboardComponent } from './components/drawingboard/drawingboard.co
     MyWorkComponent,
     SkillsComponent,
     DrawingboardComponent,
+    NavigationDotsComponent,
+    ButtonComponent,
   ],
-  imports: [
-    BrowserModule,
-    HttpClientModule,
-    BrowserAnimationsModule,
-    CdkScrollingModule,
-  ],
+  imports: [BrowserModule, HttpClientModule, CdkScrollingModule],
   providers: [],
   bootstrap: [AppComponent],
 })
