@@ -105,31 +105,32 @@ export class Fullpage {
     }
   }
 
-  // @HostListener('window:scroll')
+  // When in mobile view, we are going to watch the
+  // the sections on the page and change the url to
+  // match their positions
   public configureintersectoinobserver(): void {
-    if (this.isMobile) {
-      this.sections.forEach(section => {
-        const observer = new IntersectionObserver(
-          entries => {
-            if (
-              entries.length &&
-              entries[0].isIntersecting &&
-              !this.isanimating
-            ) {
-              const id = section.nativeElement.id;
-              const pagedef = this.pages.find(
-                page => page.name.toLowerCase() === id.toLowerCase()
-              );
+    this.sections.forEach(section => {
+      const observer = new IntersectionObserver(
+        entries => {
+          if (
+            entries.length &&
+            entries[0].isIntersecting &&
+            !this.isanimating &&
+            this.isMobile
+          ) {
+            const id = section.nativeElement.id;
+            const pagedef = this.pages.find(
+              page => page.name.toLowerCase() === id.toLowerCase()
+            );
 
-              this.location.set(pagedef.path);
-            }
-          },
-          { threshold: 0.5 }
-        );
+            this.location.set(pagedef.path);
+          }
+        },
+        { threshold: 0.5 }
+      );
 
-        observer.observe(section.nativeElement);
-      });
-    }
+      observer.observe(section.nativeElement);
+    });
   }
 
   public async setUrlState(
