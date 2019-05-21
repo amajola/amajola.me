@@ -37,6 +37,9 @@ export class AppComponent extends Fullpage implements OnInit, AfterViewInit {
 
   public ngAfterViewInit(): void {
     this.setUrlState(this.location.path);
+
+    this.configureintersectoinobserver();
+
     this.isready = true;
   }
 }
