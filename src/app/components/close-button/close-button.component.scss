@@ -1,0 +1,24 @@
+.dialog {
+    position: -webkit-sticky; /* Safari */
+    position: sticky;
+    top: 0;
+}
+.close {
+    color: #777;
+    font: 30px/100% arial, sans-serif;
+    position: absolute;
+    text-decoration: none;
+    text-shadow: 0 1px 0 #fff;
+    margin-left: 90%;
+    margin-top: 2%;
+
+    &:after {
+        content: 'X'; /* ANSI X letter */    
+    }
+
+    &:hover {
+      color: black;
+      font: 40px/100% arial, sans-serif;
+    }
+  }
+  

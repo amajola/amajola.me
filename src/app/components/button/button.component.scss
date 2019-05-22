@@ -1,6 +1,20 @@
 :host {
   all: unset;
   display: inline-block;
-  background-color: red;
+  background: #323131;
+  border-radius: 15px;
+  width: 255px;
+  height: 59px;
+
+  
+  font-family: Libre Baskerville;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 24px;
+  line-height: 29px;
+
+  text-align: center;
+
+  color: #FFFFFF;
   // add other styles
 }

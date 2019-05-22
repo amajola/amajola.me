@@ -6,9 +6,14 @@
       class="Jumb"
       (buttonClicked)="viewInfo()"
     ></app-jumbotron>
+
   </div>
 
   <div class="view info" (click)="goBack()">
-    <div #contentOutlet></div>
+
+    <app-close-button></app-close-button>
+    <div #contentOutlet>
+    </div>
   </div>
+
 </div>
