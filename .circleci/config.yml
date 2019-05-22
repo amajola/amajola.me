@@ -31,7 +31,7 @@ jobs:
 
       - run:
           name: Run Linter
-          command: echo ${FIREBASE_TOKEN}
+          command: npm run lint
 
       - run:
           name: Build out the project
@@ -63,6 +63,7 @@ jobs:
 
       - run:
           name: Deploy Master to Firebase
+          command: firebase use --token $FIREBASE_TOKEN production
           command: ./node_modules/.bin/firebase deploy --token $FIREBASE_TOKEN
 
 workflows:
