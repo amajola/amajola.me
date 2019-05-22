@@ -1,0 +1,79 @@
+# # Javascript Node CircleCI 2.0 configuration file
+# #
+# # Check https://circleci.com/docs/2.0/language-javascript/ for more details
+# #
+
+version: 2
+
+defaults: &defaults
+  working_directory: ~/tmp/app
+  docker:
+    - image: circleci/node:11.7-browsers
+
+jobs:
+  test:
+    <<: *defaults
+    steps:
+      - checkout
+
+      - restore_cache:
+          keys:
+            - v2-dependencies-{{ checksum "package.json" }}
+            # fallback to using the latest cache if no exact match is found
+            - v2-dependencies-
+
+      - run: yarn
+
+      - save_cache:
+          paths:
+            - node_modules
+          key: v2-dependencies-{{ checksum "package.json" }}
+
+      - run:
+          name: Run Linter
+          command: yarn lint
+
+      - run:
+          name: Build out the project
+          command: yarn build
+
+  deploy:
+    <<: *defaults
+    steps:
+      - checkout
+
+      - restore_cache:
+          keys:
+            - v2-dependencies-{{ checksum "package.json" }}
+            # fallback to using the latest cache if no exact match is found
+            - v2-dependencies-
+
+      - run: yarn
+
+      - save_cache:
+          paths:
+            - node_modules
+          key: v2-dependencies-{{ checksum "package.json" }}
+
+      - run: npm rebuild node-sass
+
+      - run:
+          name: Build the docs
+          command: yarn build
+
+      - run:
+          name: Deploy Master to Firebase
+          command: ./node_modules/.bin/firebase deploy --token=$FIREBASE_TOKEN
+
+workflows:
+  version: 2
+
+  build_and_deploy:
+    jobs:
+      - test
+      - deploy:
+          requires:
+            - test
+          filters:
+            branches:
+              only: master
