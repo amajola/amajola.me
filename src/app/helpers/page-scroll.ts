@@ -26,6 +26,10 @@ const SCROLL_OPTIONS: (
 };
 
 export class Fullpage {
+  private mobileQuery: MediaQueryList = window.matchMedia(
+    'screen and (max-width: 850px)'
+  );
+
   // Stores the value of the global state
   public canscroll: boolean = false;
 
@@ -39,6 +43,14 @@ export class Fullpage {
   // tracks if the page is currently scrolling
   public isanimating: boolean = false;
 
+  public get isMobile(): boolean {
+    return this.mobileQuery.matches;
+  }
+
+  public get isDesktop(): boolean {
+    return !this.isMobile;
+  }
+
   constructor(
     protected readonly pages: PageDef[],
     protected readonly title: Title,
@@ -51,12 +63,11 @@ export class Fullpage {
     canScroll.subscribe(value => (this.canscroll = value));
   }
 
-  @HostListener('window:mousewheel', ['$event']) public onmousewheel(
-    event: WheelEvent
-  ): void {
+  @HostListener('window:mousewheel', ['$event'])
+  public onmousewheel(event: WheelEvent): void {
     // Checks if the page can currently scroll
     // based on the global state of the app
-    if (this.canscroll) {
+    if (this.canscroll && this.isDesktop) {
       // Grabs the Y direction of the mousewheel
       const { deltaY } = event;
 
@@ -92,6 +103,34 @@ export class Fullpage {
         this.setUrlState(this.pages[newIndex].path);
       }
     }
+  }
+
+  // When in mobile view, we are going to watch the
+  // the sections on the page and change the url to
+  // match their positions
+  public configureintersectoinobserver(): void {
+    this.sections.forEach(section => {
+      const observer = new IntersectionObserver(
+        entries => {
+          if (
+            entries.length &&
+            entries[0].isIntersecting &&
+            !this.isanimating &&
+            this.isMobile
+          ) {
+            const id = section.nativeElement.id;
+            const pagedef = this.pages.find(
+              page => page.name.toLowerCase() === id.toLowerCase()
+            );
+
+            this.location.set(pagedef.path);
+          }
+        },
+        { threshold: 0.5 }
+      );
+
+      observer.observe(section.nativeElement);
+    });
   }
 
   public async setUrlState(

@@ -31,5 +31,4 @@ export class AboutComponent extends PageBase implements OnInit, AfterViewInit {
     this.setState(PageState.idle);
     canScroll.next(true);
   }
-
 }

@@ -7,6 +7,10 @@ export enum PageState {
 }
 
 export class PageBase extends MarkdownConsumer {
+  public isMobile: boolean;
+
+  public mediaQuery = window.matchMedia('screen and (max-width: 550px)');
+
   public pagestate: PageState = PageState.idle;
 
   public getState(): string {
@@ -18,5 +22,12 @@ export class PageBase extends MarkdownConsumer {
 
   constructor(pathToMarkdown: string, showdownservice: ShowdownService) {
     super(pathToMarkdown, showdownservice);
+
+    this.isMobile = this.mediaQuery.matches;
+
+    this.mediaQuery.addEventListener(
+      'change',
+      () => (this.isMobile = this.mediaQuery.matches)
+    );
   }
 }

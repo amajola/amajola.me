@@ -1,9 +1,10 @@
 <div class="container" [ngClass]="'state-' + getState()">
-  <div class="view idle" (click)="viewInfo()">
+  <div class="view idle">
     <app-jumbotron
       [imageSrc]="displayImage"
       [title]="jumboTronHeader"
       class="Jumb"
+      (buttonClicked)="viewInfo()"
     ></app-jumbotron>
   </div>
 

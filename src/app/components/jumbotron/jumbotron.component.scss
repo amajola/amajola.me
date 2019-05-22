@@ -3,6 +3,7 @@
   padding-left: 200px;
   width: 80%;
   max-width: 850px;
+  position: relative;
 
   .card-wrapper {
     width: 100%;
@@ -38,45 +39,57 @@
       }
     }
   }
+
+  @media screen and (max-width: 850px) {
+    padding: 0 50px;
+
+    .card-wrapper {
+      padding: 0 20px;
+
+      margin-top: 130px;
+
+      .card-image {
+        position: absolute;
+        top: -50%;
+        margin-top: 0;
+        z-index: -1;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+    }
+  }
+
+  @media screen and (max-width: 550px) {
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    padding-top: 30vh;
+
+    .card-wrapper {
+      margin-top: 0;
+      padding: 0;
+      box-shadow: none;
+      border-radius: 0;
+      background-color: transparent;
+      height: 100%;
+      // position: static;
+
+      .card-image {
+        width: 100%;
+        height: 40vh;
+        top: -30vh;
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+      }
+
+      .content-wrapper {
+        width: 90%;
+        height: calc(100% - 50px);
+        margin: auto;
+        background-color: #ffffff;
+        box-shadow: 0px 4px 12px rgba(49, 49, 49, 0.4);
+        border-radius: 15px;
+      }
+    }
+  }
 }
-
-// @import url('https://fonts.googleapis.com/css?family=Roboto+Slab');
-// @import url('https://fonts.googleapis.com/css?family=Libre+Baskerville');
-
-// $main-width: 50vw;
-// $main-hieght: 60vh;
-
-// .container {
-//     display: grid;
-//     grid-column: 1fr 2fr 1fr;
-//     .main {
-//         grid-column: 2/4;
-//         width:  $main-width;
-//         height: $main-hieght;
-//         border-radius: 15px;
-//         box-shadow: 0px 4px 12px rgba(49, 49, 49, 0.4);
-//         .header {
-//             margin-top: 5%;
-//             margin-left: 39%;
-//             font-size: 56px;
-//             text-align: center;
-//             font-family: 'Libre Baskerville', serif;
-//             font-style: normal;
-//             font-weight: normal;
-//             text-align: center;
-//         }
-//     }
-//     .image-container {
-//         left: 40%;
-//         width: 25vw;
-//         height: 35vh;
-//         grid-column: 1/2;
-//         margin-top: 90px;
-//         position: relative;
-//         .image {
-//             width: 100%;
-//             border-radius: 20px 20px 20px 20px;
-//             box-shadow: 0px 0px 10px rgba(49, 49, 49, 0.4);
-//         }
-//     }
-// }

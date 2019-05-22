@@ -1,10 +1,10 @@
 <div class="container" [ngClass]="'state-' + getState()">
   <div class="view idle" (click)="viewInfo()">
-    <!-- <app-jumbotron
-      [ViewImg]="displayImage"
-      [Header]="jumboTronHeader"
+    <app-jumbotron
+      [imageSrc]="displayImage"
+      [title]="jumboTronHeader"
       class="Jumb"
-    ></app-jumbotron> -->
+    ></app-jumbotron>
   </div>
 
   <div class="view info" (click)="goBack()">
