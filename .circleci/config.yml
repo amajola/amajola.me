@@ -64,7 +64,7 @@ jobs:
       
       - run:
           name: Use Firebase App
-          command: firebase use --token $FIREBASE_DEPLOY_KEY production
+          command: ./node_modules/.bin/firebase use --token $FIREBASE_DEPLOY_KEY production
 
       - run:
           name: Deploy Master to Firebase
