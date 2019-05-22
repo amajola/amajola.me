@@ -61,7 +61,7 @@ jobs:
           name: Build the docs
           command: npm run build
 
-      -run:
+      - run:
         name: Display FIREBASE Token because I think its saved.
         command: echo ${FIREBASE_TOKEN}
 
