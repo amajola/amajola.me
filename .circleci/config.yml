@@ -31,7 +31,6 @@ jobs:
 
       - run:
           name: Run Linter
-          command: npm run lint
           command: echo ${FIREBASE_TOKEN}
 
       - run:
