@@ -15,7 +15,7 @@ export class AboutComponent extends PageBase implements OnInit, AfterViewInit {
   public jumboTronHeader: string = 'About';
 
   constructor(@Inject(ShowdownService) showdown: ShowdownService) {
-    super('assets/skills/Lopem.md', showdown);
+    super('assets/about/Lopem.md', showdown);
   }
 
   ngOnInit() {}

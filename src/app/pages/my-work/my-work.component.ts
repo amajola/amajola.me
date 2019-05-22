@@ -1,7 +1,6 @@
 import { Component, OnInit, AfterViewInit, Inject } from '@angular/core';
 import { ShowdownService } from '../../services/showdown.service';
 import { PageBase, PageState } from './../../helpers/page';
-import { MarkdownConsumer } from '../../helpers/showdown';
 import { canScroll } from 'src/app/helpers/global/state';
 
 @Component({
