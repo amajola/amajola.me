@@ -61,11 +61,6 @@ jobs:
           name: Build the docs
           command: npm run build
 
-      
-      - run:
-          name: Use Firebase App
-          command: ./node_modules/.bin/firebase use --token $FIREBASE_DEPLOY_KEY production
-
       - run:
           name: Deploy Master to Firebase
           command: ./node_modules/.bin/firebase deploy --token $FIREBASE_TOKEN
