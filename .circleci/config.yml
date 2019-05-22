@@ -22,7 +22,7 @@ jobs:
             # fallback to using the latest cache if no exact match is found
             - v2-dependencies-
 
-      - run: yarn install
+      - run: npm install
 
       - save_cache:
           paths:
@@ -31,11 +31,11 @@ jobs:
 
       - run:
           name: Run Linter
-          command: yarn lint
+          command: npm run lint
 
       - run:
           name: Build out the project
-          command: yarn build
+          command: npm run build
 
   deploy:
     <<: *defaults
@@ -48,7 +48,7 @@ jobs:
             # fallback to using the latest cache if no exact match is found
             - v2-dependencies-
 
-      - run: yarn install
+      - run: npm install
 
       - save_cache:
           paths:
@@ -59,7 +59,7 @@ jobs:
 
       - run:
           name: Build the docs
-          command: yarn build
+          command: npm run build
 
       - run:
           name: Deploy Master to Firebase
