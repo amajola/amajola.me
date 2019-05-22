@@ -12,7 +12,9 @@
     </div>
 
     <div class="action">
-      <button (click)="buttonClicked.emit()" app-button>SEE MORE</button>
+      <button (click)="buttonClicked.emit()" app-button>
+        {{ buttonText }}
+      </button>
     </div>
   </div>
 </div>

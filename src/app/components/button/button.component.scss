@@ -1,20 +1,26 @@
 :host {
   all: unset;
+  cursor: pointer;
   display: inline-block;
-  background: #323131;
+  background-color: #323131;
   border-radius: 15px;
-  width: 255px;
-  height: 59px;
-
-  
-  font-family: Libre Baskerville;
+  min-width: 200px;
+  height: 45px;
+  padding: 0 18px;
+  font-weight: lighter;
+  text-transform: uppercase;
   font-style: normal;
-  font-weight: normal;
-  font-size: 24px;
-  line-height: 29px;
-
+  font-size: 18px;
+  letter-spacing: 2px;
   text-align: center;
+  color: #ffffff;
+  font-family: sans-serif;
 
-  color: #FFFFFF;
-  // add other styles
+  &:hover {
+    transform: scale(1.02);
+  }
+
+  &:active {
+    background-color: lighten(#323131, 10);
+  }
 }

@@ -16,7 +16,7 @@ import { JumbotronComponent } from '@components/jumbotron';
 import { DrawingboardComponent } from '@components/drawingboard';
 import { NavigationDotsComponent } from '@components/navigation-dots';
 import { ButtonComponent } from '@components/button';
-import { CloseButtonComponent } from './components/close-button/close-button.component';
+import { CloseButtonComponent } from '@components/close-button';
 
 @NgModule({
   declarations: [
