@@ -1,0 +1,26 @@
+:host {
+  all: unset;
+  cursor: pointer;
+  display: inline-block;
+  background-color: #323131;
+  border-radius: 15px;
+  min-width: 200px;
+  height: 45px;
+  padding: 0 18px;
+  font-weight: lighter;
+  text-transform: uppercase;
+  font-style: normal;
+  font-size: 18px;
+  letter-spacing: 2px;
+  text-align: center;
+  color: #ffffff;
+  font-family: sans-serif;
+
+  &:hover {
+    transform: scale(1.02);
+  }
+
+  &:active {
+    background-color: lighten(#323131, 10);
+  }
+}

@@ -1,57 +1,39 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
 
-
-
+import { CdkScrollingModule } from './helpers/scrolling/scrolling.module';
 
 import { AppComponent } from './app.component';
 
+import { HomePageComponent } from '@pages/home-page';
+import { AboutComponent } from '@pages/about';
+import { ContactComponent } from '@pages/contact';
+import { MyWorkComponent } from '@pages/my-work';
+import { SkillsComponent } from '@pages/skills';
 
-import { PageTextComponent } from './page-text/page-text.component';
-import { JumbotronComponent } from './jumbotron/jumbotron.component';
-import { HttpClientModule } from '@angular/common/http';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { AngularFullpageModule } from '@fullpage/angular-fullpage';
-import {RouterModule, Routes} from '@angular/router';
-import { HomeComponent } from './home/home.component';
-import { MarkdownModule, MarkedOptions } from 'ngx-markdown';
-
-const Routes: Routes = [
-  {path: 'marked/:id', component: PageTextComponent},
-  {path: 'home', component: HomeComponent},
-]
-
-
+import { JumbotronComponent } from '@components/jumbotron';
+import { DrawingboardComponent } from '@components/drawingboard';
+import { NavigationDotsComponent } from '@components/navigation-dots';
+import { ButtonComponent } from '@components/button';
+import { CloseButtonComponent } from '@components/close-button';
 
 @NgModule({
   declarations: [
     AppComponent,
-    PageTextComponent,
     JumbotronComponent,
-    HomeComponent,
+    HomePageComponent,
+    AboutComponent,
+    ContactComponent,
+    MyWorkComponent,
+    SkillsComponent,
+    DrawingboardComponent,
+    NavigationDotsComponent,
+    ButtonComponent,
+    CloseButtonComponent,
   ],
-  imports: [
-    BrowserModule,
-    HttpClientModule,
-    BrowserAnimationsModule,
-    AngularFullpageModule,
-    RouterModule.forRoot(Routes),
-    MarkdownModule.forRoot({
-      markedOptions: {
-        provide: MarkedOptions,
-        useValue: {
-          gfm: true,
-          tables: true,
-          breaks: false,
-          pedantic: false,
-          sanitize: true,
-          smartLists: true,
-          smartypants: false,
-        },
-      },
-    }),
-  ],
+  imports: [BrowserModule, HttpClientModule, CdkScrollingModule],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

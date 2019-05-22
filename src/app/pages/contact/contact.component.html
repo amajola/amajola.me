@@ -1,0 +1,15 @@
+<div class="container state-idle">
+  <div class="view idle">
+    <app-jumbotron
+      [imageSrc]="displayImage"
+      [title]="jumboTronHeader"
+      [buttonText]="buttonText"
+      (buttonClicked)="emailMe()"
+      class="Jumb"
+    ></app-jumbotron>
+  </div>
+
+  <div class="view info">
+    <div #contentOutlet></div>
+  </div>
+</div>

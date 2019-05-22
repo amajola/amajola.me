@@ -1,0 +1,15 @@
+<div class="container" [ngClass]="'state-' + getState()">
+  <div class="view idle">
+    <app-jumbotron
+      [imageSrc]="displayImage"
+      [title]="jumboTronHeader"
+      class="Jumb"
+      (buttonClicked)="viewInfo()"
+    ></app-jumbotron>
+  </div>
+
+  <div class="view info">
+    <app-close-button (click)="goBack()"></app-close-button>
+    <div #contentOutlet></div>
+  </div>
+</div>

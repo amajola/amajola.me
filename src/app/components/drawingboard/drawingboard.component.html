@@ -1,0 +1,28 @@
+<canvas
+  id="drawingBoard"
+  (mousemove)="onmousemove($event)"
+  (mousedown)="onmousedown($event)"
+  (mouseup)="stopDrawing()"
+  (mouseleave)="stopDrawing()"
+  #canvas
+></canvas>
+
+<div class="drawing-tools" [class.shown]="userHasDrawn">
+  <button
+    *ngFor="let color of colors"
+    class="color-button"
+    [class.active]="color === activeDrawColor"
+    [style.backgroundColor]="color.value"
+    (click)="setColor(color)"
+  >
+    {{ color.name }}
+  </button>
+  <br />
+  <div class="clear-button" (click)="clearBoard()">
+    <img src="assets/delete-icon.svg" alt="delete" />
+  </div>
+</div>
+
+<div class="user-draw-message" *ngIf="!userHasDrawn">
+  <img src="assets/drawing-hint.svg" alt="Try drawing something" />
+</div>

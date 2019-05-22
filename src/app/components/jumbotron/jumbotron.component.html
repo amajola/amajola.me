@@ -1,0 +1,20 @@
+<div class="card-wrapper">
+  <div
+    class="card-image"
+    [style.backgroundImage]="'url(' + imageSrc + ')'"
+  ></div>
+
+  <div class="content-wrapper">
+    <h2>{{ title }}</h2>
+
+    <div class="content-outlet">
+      <ng-content></ng-content>
+    </div>
+
+    <div class="action">
+      <button (click)="buttonClicked.emit()" app-button>
+        {{ buttonText }}
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,35 @@
+:host {
+  display: block;
+  height: 100vh;
+  width: auto;
+
+  .scroll-wrapper {
+    width: 100%;
+    height: auto;
+
+    .scroll-section {
+      width: 100%;
+      height: 100vh;
+
+      &.home {
+        background-color: gray;
+      }
+
+      &.Skills {
+        background-color: white;
+      }
+
+      &.about {
+        background-color: white;
+      }
+
+      &.contact {
+        background-color: white;
+      }
+
+      @media screen and (max-width: 550px) {
+        display: block;
+      }
+    }
+  }
+}

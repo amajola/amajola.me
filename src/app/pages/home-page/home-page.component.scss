@@ -1,0 +1,14 @@
+:host {
+  display: block;
+  height: 100%;
+  width: 100%;
+  overflow: auto;
+  position: relative;
+  background-color: #ffffff;
+}
+
+.markdown {
+  font-size: 1.5em;
+}
+
+// So I'm having problems Styling the .theme class which is made by home-page.conponent.ts

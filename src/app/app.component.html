@@ -1,1 +1,23 @@
-<router-outlet></router-outlet>
+<main class="scroll-wrapper">
+  <section class="scroll-section home" #section id="Home">
+    <app-home-page></app-home-page>
+  </section>
+
+  <section class="scroll-section about" #section id="About">
+    <app-about></app-about>
+  </section>
+
+  <section class="scroll-section work" #section id="Work">
+    <app-my-work></app-my-work>
+  </section>
+
+  <section class="scroll-section work" #section id="Skills">
+    <app-skills></app-skills>
+  </section>
+
+  <section class="scroll-section contact" #section id="Contact">
+    <app-contact></app-contact>
+  </section>
+</main>
+
+<app-navigation-dots></app-navigation-dots>
