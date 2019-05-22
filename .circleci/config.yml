@@ -61,6 +61,10 @@ jobs:
           name: Build the docs
           command: npm run build
 
+      -run:
+        name: Display FIREBASE Token because I think its saved.
+        command: echo ${FIREBASE_TOKEN}
+
       - run:
           name: Deploy Master to Firebase
           command: ./node_modules/.bin/firebase deploy --token $FIREBASE_TOKEN
