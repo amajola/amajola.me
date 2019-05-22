@@ -5,6 +5,7 @@ import { ShowdownService } from '../services/showdown.service';
 export class MarkdownConsumer {
   @ViewChild('contentOutlet')
   public contentoutlet: ElementRef<HTMLElement>;
+  public darkMode: boolean = false;
 
   // This state tracker can be used to have
   // a loading state when the markdown is
@@ -52,5 +53,14 @@ export class MarkdownConsumer {
     this.contentoutlet.nativeElement.classList.add('markdown-wrapper');
 
     this.fetchingMarkdown = false;
+  }
+
+  activateTheme() {
+    if (this.darkMode === true) {
+      this.contentoutlet.nativeElement.classList.remove('markdown-wrapper');
+      this.contentoutlet.nativeElement.classList.add('markdown-wrapper-dark');
+    } else {
+      this.contentoutlet.nativeElement.classList.add('markdown-wrapper');
+    }
   }
 }

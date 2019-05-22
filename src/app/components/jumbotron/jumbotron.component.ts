@@ -17,6 +17,8 @@ export class JumbotronComponent implements OnInit, OnChanges {
 
   @Input() public title: string;
 
+  @Input() public buttonText: string = 'SEE MORE';
+
   @Output() public buttonClicked: EventEmitter<void> = new EventEmitter<void>();
 
   constructor() {}

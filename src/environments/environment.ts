@@ -5,6 +5,7 @@
 export const environment = {
   production: false,
   basePageTitle: 'Dev - Base page title',
+  emailAddress: 'test@testemactestface.com',
 };
 
 /*

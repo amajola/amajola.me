@@ -1,0 +1,19 @@
+.dialog {
+  position: fixed;
+  top: 15px;
+  right: 15px;
+
+  .close {
+  }
+
+  &:hover {
+    cursor: pointer;
+
+    .close {
+      #one,
+      #two {
+        fill: #333333;
+      }
+    }
+  }
+}

@@ -6,8 +6,44 @@
 .markdown-wrapper {
   h1 {
     color: var(--primary-color);
-    font-size: 50px;
+    font-family: Libre Baskerville;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 75px;
+    line-height: 93px;
+    margin-bottom: 2%;
+  }
+
+  h1:after {
+    content:' ';
+    width: 250px;
+    display: block;
+    position: absolute;
+    border: 5px solid #E5E5E5;
+  }
+
+  pre {
+    background-color: lighten($color: #000000, $amount: 30);
+    width: 50%;
+    border-radius: 20px;
+    padding: 1%;
+  }
+  font-size: 25px;
+  font-family: 'Libre Baskerville', serif;
+  padding: 8% 15% 15% 15%;
+  
+}
+
+.markdown-wrapper-dark {
+  h1 {
+    color: var(--primary-color);
+    font-size: 80px;
     font-weight: 300;
+    color: white;
+  }
+
+  p {
+    color: white;
   }
   pre {
     background-color: lighten($color: #000000, $amount: 30);
@@ -17,5 +53,7 @@
   }
   font-size: 25px;
   font-family: 'Libre Baskerville', serif;
-  padding: 5%;
+  padding: 8% 15% 15% 15%;
+  background-color: #000000;
+  
 }
