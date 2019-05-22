@@ -22,10 +22,6 @@ jobs:
             # fallback to using the latest cache if no exact match is found
             - v2-dependencies-
 
-      - run:
-        name: Display FIREBASE Token because I think its saved.
-        command: echo ${FIREBASE_TOKEN}
-        
       - run: npm install
 
       - save_cache:
@@ -67,6 +63,7 @@ jobs:
 
       - run:
           name: Deploy Master to Firebase
+          command: echo ${FIREBASE_TOKEN}
           command: ./node_modules/.bin/firebase deploy --token $FIREBASE_TOKEN
 
 workflows:
