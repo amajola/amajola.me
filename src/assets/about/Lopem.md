@@ -1,22 +1,9 @@
-# In fecerat ducitur tenus legit grandia
 
-# This should be blue
 
-## Ait cuncta arbitrium confudit hospes si orbum
+# About Me
 
-Lorem markdownum turba facit, in natantes acrior tritis constituunt dixit metuit
-vitis arva [esse](http://www.factocaesa.net/rotarum-aequora.html) iam dote furor
-visa lacrimis. Est aut [omnis operique](http://piumque.io/sortitus-redeo.html)
-has Aetna sic diu cumque dixerit: currus mirata artes. Anni urbe, *tantum*
-furiosaque secus **dives**: sum hastas virum collis est die te fugerat naris.
-Probas vocisque secernit proximus, non huc aede de hinc visaque semel.
-Cecropidae in?
-
-1. Est isto tibi omni virtute remansit
-2. Levis e Haec adde
-3. Et habent hostibus gemma
-4. Irin nec conatur licet
-
-```typescript
-const varname = 'some string';
-```
+I'm a 20 year old self-taught developer. I currently work for a Financial technology company as a Full-Stack Developer.
+<br>
+I mainly focus on the front-end side of the development team, with the goal of recreating Riskflow's legacy system to new modern and user-friendly web standards. All of the work I do is done in Angular 7 and Node.js. I'm constantly  pushing myself to learn new technologies and programming methodologies  to improve the quality of work I produce.
+<br>
+Other than programming I'm also a hobbyist photographer. Shooting most of my work on an iPhone. All of my work is on Instagram. 

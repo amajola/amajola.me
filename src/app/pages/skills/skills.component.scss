@@ -1,0 +1,29 @@
+@import '../../shared//utils/markdown';
+
+.info {
+    
+    @extend .markdown-wrapper;
+    padding: 0% 5% 5% 5%;
+    margin: 0% 0% 0 5%;
+    h1 {
+        position: sticky;
+        margin-bottom: 5%;
+    }
+    h3 {
+        text-align: center;
+    }
+    .content {
+        padding: 0% 10% 10% 0%;
+    }
+}
+
+@media screen and (max-width: 550px) { 
+    h1 {
+        margin-bottom: 5%;
+        margin-left: 10%;
+    }
+    .info {
+        padding: 0% 0% 0% 0%;
+        margin: 0% 0% 0 0%;
+    }
+}

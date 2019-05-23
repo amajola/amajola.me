@@ -1,7 +1,7 @@
 .dialog {
-  position: fixed;
-  top: 15px;
-  right: 15px;
+  position: sticky;
+  top: 0px;
+  margin-left: 90%;
 
   .close {
   }
@@ -15,5 +15,11 @@
         fill: #333333;
       }
     }
+  }
+}
+
+@media screen and (max-width: 550px) {  
+  .dialog {
+    margin-left: 80%;
   }
 }
