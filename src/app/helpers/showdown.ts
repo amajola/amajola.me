@@ -54,7 +54,7 @@ export class MarkdownConsumer {
     // of '.markdown-wrapper' so that styles can be
     // scoped to only markdown
     if (this.mobileQuery.matches === true) {
-      this.contentoutlet.nativeElement.classList.add('markdown-wrapper-mobile')
+      this.contentoutlet.nativeElement.classList.add('markdown-wrapper-mobile');
     }
     this.contentoutlet.nativeElement.classList.add('markdown-wrapper');
 
