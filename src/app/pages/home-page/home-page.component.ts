@@ -1,4 +1,6 @@
+import { Router } from './../../helpers/global/state';
 import { Component, OnInit, Renderer2 } from '@angular/core';
+
 
 @Component({
   selector: 'app-home-page',
@@ -9,4 +11,8 @@ export class HomePageComponent implements OnInit {
   constructor() {}
 
   ngOnInit() {}
+
+  public contactMe(): void {
+    Router.navigate('/contact-me');
+  }
 }
