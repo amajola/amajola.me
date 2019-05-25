@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostBinding, Input } from '@angular/core';
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./button.component.scss'],
 })
 export class ButtonComponent implements OnInit {
+  @HostBinding('class.outlined') @Input() public outlined: boolean = false;
+
   constructor() {}
 
   ngOnInit() {}
