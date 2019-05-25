@@ -20,6 +20,16 @@ export class ContactComponent implements OnInit, AfterViewInit {
 
   public ngAfterViewInit(): void {}
 
+  sendTo(website) {
+    if (website === 'github') {
+      window.open(environment.github);
+    } else if (website === 'twitter') {
+      window.open(environment.twitter);
+    } else if (website === 'linkedin') {
+      window.open(environment.linkedin);
+    }
+  }
+
   public emailMe(): void {
     window.open(`mailto:${environment.emailAddress}`, '_blank');
   }
