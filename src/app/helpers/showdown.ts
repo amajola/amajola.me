@@ -7,6 +7,9 @@ export class MarkdownConsumer {
   public contentoutlet: ElementRef<HTMLElement>;
   public darkMode: boolean = false;
 
+  private mobileQuery: MediaQueryList = window.matchMedia(
+    'screen and (max-width: 850px)'
+  );
   // This state tracker can be used to have
   // a loading state when the markdown is
   // being fetched
@@ -50,6 +53,9 @@ export class MarkdownConsumer {
     // All compiled markdown will be rendered into
     // of '.markdown-wrapper' so that styles can be
     // scoped to only markdown
+    if (this.mobileQuery.matches === true) {
+      this.contentoutlet.nativeElement.classList.add('markdown-wrapper-mobile');
+    }
     this.contentoutlet.nativeElement.classList.add('markdown-wrapper');
 
     this.fetchingMarkdown = false;

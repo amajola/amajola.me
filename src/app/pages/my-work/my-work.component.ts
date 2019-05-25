@@ -13,7 +13,7 @@ export class MyWorkComponent extends PageBase implements OnInit, AfterViewInit {
   jumboTronHeader: String = 'My Work';
 
   constructor(@Inject(ShowdownService) showdown: ShowdownService) {
-    super('assets/skills/Lopem.md', showdown);
+    super('assets/work/Lopem.md', showdown);
   }
 
   ngOnInit() {}

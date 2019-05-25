@@ -17,6 +17,7 @@ import { DrawingboardComponent } from '@components/drawingboard';
 import { NavigationDotsComponent } from '@components/navigation-dots';
 import { ButtonComponent } from '@components/button';
 import { CloseButtonComponent } from '@components/close-button';
+import { LevelComponent } from './pages/skills/level/level.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { CloseButtonComponent } from '@components/close-button';
     NavigationDotsComponent,
     ButtonComponent,
     CloseButtonComponent,
+    LevelComponent,
   ],
   imports: [BrowserModule, HttpClientModule, CdkScrollingModule],
   providers: [],

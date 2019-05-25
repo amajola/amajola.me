@@ -10,6 +10,14 @@
 
   <div class="view info">
     <app-close-button (click)="goBack()"></app-close-button>
-    <div #contentOutlet></div>
+    <div class="content">
+      <h1 class="header">Skills</h1>
+      <h3>Curent <b>Skills</b> and <b>Effciency</b> level</h3>
+      <app-level Title="Angular" Level="75%"></app-level>
+      <app-level Title="HTML/CSS" Level="85%"></app-level>
+      <app-level Title="Javascript" Level="80%"></app-level>
+      <app-level Title="Typescript" Level="80%"></app-level>
+      <app-level Title="Node.js" Level="70%"></app-level>
+    </div>
   </div>
 </div>
