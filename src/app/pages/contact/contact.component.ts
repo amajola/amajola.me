@@ -10,6 +10,7 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['../page.scss', './contact.component.scss'],
 })
 export class ContactComponent implements OnInit, AfterViewInit {
+
   public displayImage: String = '../../../assets/contact_me/FullSizeRender.JPG';
   public jumboTronHeader: String = 'Contact';
   public buttonText: string = 'EMAIL ME';
